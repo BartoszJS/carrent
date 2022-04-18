@@ -2,10 +2,8 @@
 declare(strict_types = 1);                               // Use strict types
 use PhpBook\Validate\Validate;                           // Import Validate class
 include 'src/bootstrap.php';    
-include 'includes/database-connection.php'; 
-include 'includes/validate.php';
-// $rolesession = $_SESSION['role'] == 'member' ?? '';
 
+is_member($session->role);  
 
 ?>
 
@@ -17,20 +15,10 @@ include 'includes/validate.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Strona główna</title>
-    <?php if (isset($_SESSION['id'])){ ?> 
-    <?php if($_SESSION['role'] == 'member'){ ?>
-    <?php include 'includes/headermember.php'; ?>
-    <?php }elseif($_SESSION['role'] == 'admin'){ ?>
-    <?php include 'includes/headeradmin.php'; ?>
-    <?php }}else{ ?> 
-    <?php include 'includes/header.php'; ?>    
-    <?php }?>
-    
-
+    <?php include 'includes/header.php'; ?>
 </head>
 <body>
-    <br><br><br><br><br><br><br>
-
-    
+    <br><br><br><br><br><br>
+    <h1>Jest member</h1>
 </body>
 </html>

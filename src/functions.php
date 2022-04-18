@@ -15,7 +15,7 @@ function is_admin($role)
 function is_member($role)
 {
     if ($role !== 'member') {                                   // If role is not admin
-        header('Location: ' . DOC_ROOT);                       // Send to home page
+        header('Location: nieznaleziono.php');                       // Send to home page
         exit;                                                  // Stop code running
     }
 }

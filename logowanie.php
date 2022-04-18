@@ -2,7 +2,6 @@
 declare(strict_types = 1);                               // Use strict types
 use PhpBook\Validate\Validate;                           // Import Validate class
 include 'src/bootstrap.php';    
-
 include 'includes/database-connection.php'; 
 include 'includes/validate.php';
 $errors =[];
@@ -72,7 +71,14 @@ $data['errors']     = $errors;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Logowanie</title>
-    <?php include 'includes/header.php'; ?>
+    <?php if (isset($_SESSION['id'])){ ?> 
+    <?php if($_SESSION['role'] == 'member'){ ?>
+    <?php include 'includes/headermember.php'; ?>
+    <?php }elseif($_SESSION['role'] == 'admin'){ ?>
+    <?php include 'includes/headeradmin.php'; ?>
+    <?php }}else{ ?> 
+    <?php include 'includes/header.php'; ?>    
+    <?php }?>
 </head>
 <body>
 
@@ -103,18 +109,16 @@ $data['errors']     = $errors;
               <h1><?= $errors['message'] ?></h1>
               <a href="logout.php">Logout</a>
 */?>
-
-              
-            <?php if ($_SESSION['id'] == 0) { ?>
-             
-            <h1>zaloguj sie</h1>
-            <?php } else {  ?>
-            <h1>zalogowano  <?= $_SESSION['id'] ?></h1>
-            <?= $_SESSION['role'] ?></h1>
-
-             <a href="logout.php">Logout</a>
-            <?php }?>
-
+            <div class="nieznaleziono">
+              <?php if (isset($_SESSION['id'])){ ?> 
+                <h1>Zalogowano</h1>
+              <?= $_SESSION['id'] ?>
+              <?= $_SESSION['role'] ?>
+              <h3><a href="logout.php">Logout</a></h3>
+              <?php } else {  ?>
+              <h1>zaloguj sie</h1>
+              <?php }?>
+            </div>
 
 <form action="logowanie.php" method="POST" enctype="multipart/form-data"> 
 <br><br>
