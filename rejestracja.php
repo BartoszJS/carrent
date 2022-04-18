@@ -65,6 +65,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         throw $e;
       }
     }
+
+  //   if (!$invalid) {                                         // If no errors
+  //     $result = $cms->getMember()->create($member);        // Create member
+  //     if ($result === false) {                             // If result is false
+  //         $errors['email'] = 'Email address already used'; // Store a warning
+  //     } else {                                             // Otherwise send to login
+  //         redirect('logowanie.php', ['success' => 'Thanks for joining! Please log in.']); 
+  //     }
+  // }
+
   }
 
 

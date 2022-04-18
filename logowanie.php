@@ -1,13 +1,19 @@
 <?php
+declare(strict_types = 1);                               // Use strict types
+use PhpBook\Validate\Validate;                           // Import Validate class
+include 'src/bootstrap.php';    
 
 include 'includes/database-connection.php'; 
-include 'includes/functions.php'; 
 include 'includes/validate.php';
-
 $errors =[];
+
+
+
 // $errors['email']    ='';
 // $errors['haslo']    ='';
 $email='';
+
+
 $member['email']    ='';
 $member['haslo']    ='';
 $errors['email']    ='';
@@ -16,10 +22,44 @@ $errors['nazwisko'] ='';
 $errors['haslo']    ='';
 $errors['potwierdz']    ='';
 $errors['telefon']  ='';
+$errors['message']  ='';
+
+$success = $_GET['success'] ?? null;
+
+if($_SERVER['REQUEST_METHOD']=='POST'){
+  
+    $email = $_POST['email'];
+    $haslo = $_POST['haslo'];
 
 
+    // $errors['haslo']  = is_text($member['haslo'], 1, 20)
+    //       ? '' : 'Hasło musi miec od 1-20 znaków';
+       
+    // $errors['email']  = is_text($member['email'], 1, 40)
+    //       ? '' : 'Email musi miec od 1-40 znaków';
 
+          $invalid = implode($errors);
+          
 
+    if($invalid){
+      $_SESSION['id'] = 0;
+      $errors['message']='Sprobuj ponownie';
+    }else{
+      $member = $cms->getMember()->login($email, $haslo); // Get member details
+      if ($member) {                                   // Otherwise for members
+          $cms->getSession()->create($member);               // Create session
+          //redirect('member.php', ['id' => $member['id'],]);
+          redirect('../logowanie.php');  // Redirect to their page
+      } else {                                               // Otherwise
+          $errors['message'] = 'Please try again.';   
+          $_SESSION['id'] = 0   ;   // Store error message
+      }
+    }
+}
+
+$data['success']    = $success;                              // Success message
+$data['email']      = $email;                                // Email address if login failed
+$data['errors']     = $errors;  
 
 ?>
 
@@ -37,7 +77,44 @@ $errors['telefon']  ='';
 <body>
 
 
+<?php /* 
+<a class="skip-link" href="#content">Skip to content</a>
+      <nav class="member-menu">
+        <div class="container">
+        <?php if ($_SESSION['id'] == 0) { ?>
+            <a href="login.php" class="nav-item nav-link">Log in</a> /
+            <a href="register.php" class="nav-item nav-link">Register</a>
+            <?php } else {  ?>
+            <a href="member.php?id=<?php $_SESSION['id'] ?>"><?php $_SESSION['imie'] ?></a> /
+            <?php if ($_SESSION['role'] == 'admin') { ?>
+              <a href="admin/index.php">Admin</a> /
+              <?php }?>
+            <a href="logout.php">Logout</a>
+            <?php }?>
+        </div>
+      </nav>
+
+*/?>
+
 <br><br><br><br> <br>
+<br><br>
+<?php /* 
+              <h1><?= $_SESSION['id'] ?></h1>
+              <h1><?= $errors['message'] ?></h1>
+              <a href="logout.php">Logout</a>
+*/?>
+
+              
+            <?php if ($_SESSION['id'] == 0) { ?>
+             
+            <h1>zaloguj sie</h1>
+            <?php } else {  ?>
+            <h1>zalogowano  <?= $_SESSION['id'] ?></h1>
+            <?= $_SESSION['role'] ?></h1>
+
+             <a href="logout.php">Logout</a>
+            <?php }?>
+
 
 <form action="logowanie.php" method="POST" enctype="multipart/form-data"> 
 <br><br>
@@ -56,7 +133,7 @@ $errors['telefon']  ='';
 
         <div class="form-group">
           <label for="title">  Haslo: </label> <br>
-          <input type="haslo" name="haslo" id="haslo" value=""
+          <input type="password" name="haslo" id="haslo" value=""
                  class="form-control">
                  <span class="errors"><?= $errors['haslo'] ?></span>
         </div><br><br>
