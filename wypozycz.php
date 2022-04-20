@@ -25,27 +25,7 @@ if (!$car) {
 }
 $countid="SELECT id from car where id=:id;";
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-
-$rent['id_car']=$_POST['id_car'];
-$rent['id_member']=$_POST['id_member'];
-$rent['data_wypozyczenia']=$_POST['data_wypozyczenia'];
-$rent['czas_wypozyczenia']=$_POST['czas_wypozyczenia'];
-
-$sqlrent="INSERT INTO rent(id_car,id_member,data_wypozyczenia,czas_wypozyczenia)
-values(:id_car,:id_member,:data_wypozyczenia,:czas_wypozyczenia);";
-
-$arguments=$rent;
-
-try{
-    pdo($pdo,$sqlrent,$arguments)  ;  
-    header("Location: index.php"); 
-    exit();
-  }catch(PDOException $e){
-    throw $e;
-  }
-}
 
 ?>
 <!DOCTYPE html>
@@ -99,13 +79,14 @@ try{
                     <p>Skrzynia biegów: <?= html_escape($car['skrzynia'])?></p> 
                     <p>Liczba miejsc: <?= html_escape($car['liczba_miejsc'])?></p> 
                     <p id="cena">Cena: <?= html_escape($car['cena'])?>zł/24h</p> 
-                    <input type="text" name="id_car" value="<?= $car['id'] ?>" placeholder="<?= $car['id'] ?>"> 
-                    <input type="text" name="id_member" value="<?= $_SESSION['id'] ?>" placeholder="<?= $_SESSION['id'] ?> "> 
+                    
                         
                             
                             
             </div>   
-<form action="wypozycz.php" method="POST" enctype="multipart/form-data"> 
+<form action="wypozyczconfirm.php" method="POST" enctype="multipart/form-data"> 
+                    <input type="hidden" name="id_car" value="<?= $car['id'] ?>" > 
+                    <input type="hidden" name="id_member" value="<?= $_SESSION['id'] ?>" > 
                 <div class="forms">
                     <!-- <label for="start">  Od kiedy: </label> <br>
                     <input type="date" name="start" id="start" value="" class="form-control">
