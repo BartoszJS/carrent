@@ -73,7 +73,7 @@ $car = pdo($pdo,$sql)->fetchAll();
                         <?= html_escape($pojedynczo['paliwo'])?>
                         <?= html_escape($pojedynczo['konie'])?> km</p> <br> <br>
                         <p>Skrzynia biegów: <?= html_escape($pojedynczo['skrzynia'])?></p> <br><br>
-                        <p id="cena">Cena: <?= html_escape($pojedynczo['cena'])?>zł/24h</p> <br><br><br><br> <a href="car.php?id=<?= $pojedynczo['id'] ?>" class="btnwypo" >WYPOŻYCZ</a><br>
+                        <p id="cena">Cena: <?= html_escape($pojedynczo['cena'])?>zł/24h</p> <br><br><br><br> <a href="wypozycz.php?id=<?= $pojedynczo['id'] ?>" class="btnwypo" >WYPOŻYCZ</a><br>
                         
                             
                             

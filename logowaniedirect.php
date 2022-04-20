@@ -48,7 +48,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       if ($member) {                                   // Otherwise for members
           $cms->getSession()->create($member);               // Create session
           //redirect('member.php', ['id' => $member['id'],]);
-          redirect('../index.php');  // Redirect to their page
+          redirect('../logowanie.php');  // Redirect to their page
       } else {                                               // Otherwise
           $errors['message'] = 'Please try again.';   
           $_SESSION['id'] = 0   ;   // Store error message
@@ -109,8 +109,6 @@ $data['errors']     = $errors;
               <h1><?= $errors['message'] ?></h1>
               <a href="logout.php">Logout</a>
 */?>
-
-<?php /*
             <div class="nieznaleziono">
               <?php if (isset($_SESSION['id'])){ ?> 
                 <h1>Zalogowano</h1>
@@ -118,11 +116,9 @@ $data['errors']     = $errors;
               <?= $_SESSION['role'] ?>
               <h3><a href="logout.php">Logout</a></h3>
               <?php } else {  ?>
-              <h1>zaloguj sie</h1>
+              <br><h1>Proszę się zalogować</h1>
               <?php }?>
             </div>
-*/ ?>
-
 
 <form action="logowanie.php" method="POST" enctype="multipart/form-data"> 
 <br><br>
@@ -154,17 +150,13 @@ $data['errors']     = $errors;
             <span >Nie masz konta?</span>
             <a href="rejestracja.php">Utwórz konto</a>
         </div>
-        <br>
-
-        
-
-        <br>
+      
      
       </div>
     </section>
     <br>
 </form>
-<br><br><br><br> <br>
+<br>
 </div>
 </body>
 </html>

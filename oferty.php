@@ -7,13 +7,72 @@ include 'includes/validate.php';
 // include 'includes/functions.php';
 // $rolesession = $_SESSION['role'] == 'member' ?? '';
 
+$term  = filter_input(INPUT_GET, 'term');                 // Get search term
+$show  = filter_input(INPUT_GET, 'show', FILTER_VALIDATE_INT) ?? 3; // Limit
+$from  = filter_input(INPUT_GET, 'from', FILTER_VALIDATE_INT) ?? 0; // Offset
+$count = 0;
+$car=[];
 
-$sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,cena,liczba_miejsc,wypozyczony,image
-    FROM car
-    where wypozyczony=0   
-    order by id asc
-    limit 5;";
-$car = pdo($pdo,$sql)->fetchAll();
+if(!$term){
+    $count = 0;
+    $sqlicz="SELECT COUNT(id) from car where wypozyczony=0;";
+    $count = pdo($pdo, $sqlicz)->fetchColumn();
+    if($count>0){
+        $arguments['show'] = $show;                     
+        $arguments['from'] = $from;
+
+        $sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,cena,liczba_miejsc,wypozyczony,image
+        FROM car
+        where wypozyczony=0   
+        order by id asc
+        limit :show
+        OFFSET :from;";
+        $car = pdo($pdo,$sql, $arguments)->fetchAll();
+    }
+}
+
+
+
+
+if($term){
+    
+    $arguments['term1'] ='%'. $term .'%'; 
+    // $arguments['term2'] ='%'.$term.'%';            // three times as placeholders
+    // $arguments['term3'] ='%'.$term.'%';
+
+
+    $sql="SELECT COUNT(id) from car
+    where wypozyczony=0
+    and marka     like :term1;";
+
+    $count = 0;
+    
+    $count = pdo($pdo, $sql, $arguments)->fetchColumn();
+
+
+    if ($count > 0) {                                     // If articles match term
+        $arguments['show'] = $show;                       // Add to array for pagination
+        $arguments['from'] = $from; 
+
+        $sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,cena,liczba_miejsc,wypozyczony,image
+            FROM car
+            where wypozyczony=0   
+            and marka like :term1
+            order by id asc
+            limit :show
+            OFFSET :from;";
+        
+        $car = pdo($pdo, $sql, $arguments)->fetchAll();
+
+    }
+}
+
+
+if ($count > $show) {                                     // If matches is more than show
+    $total_pages  = ceil($count / $show);                 // Calculate total pages
+    $current_page = ceil($from / $show) + 1;              // Calculate current page
+}
+
 
 
 
@@ -45,9 +104,27 @@ $car = pdo($pdo,$sql)->fetchAll();
         <img src="img/car1.jpg" class="indeximage" alt="">
         <br><br><br><br><br>
       -->
+      <div class="oferty" id="oferty">
+
+      <div class="place">
+    
+    <br>
+        <form action="oferty.php" method="get" class="form-search">
+                <label for="search"><span> </span></label>
+                <input type="text" name="term" 
+                    id="search" placeholder="Wpisz marke:"  
+                /><input type="submit" value="Szukaj" class="btnpage" />
+                
+        </form>
+
+        
+
+            <?php if ($term) { ?><p><b>Znaleziono:</b> <?= $count ?></p><?php } ?>
+           <br>
+    </div>
 
 
-        <div class="oferty" id="oferty">
+        
             <?php foreach($car as $pojedynczo) { ?> 
                 <div class="ramka">
                     <a href="car.php?id=<?= $pojedynczo['id'] ?>">
@@ -78,6 +155,21 @@ $car = pdo($pdo,$sql)->fetchAll();
 
                 </div>
     <?php }?>
+
+    <?php  if ($count > $show) { ?>
+    <nav class="pagination" role="navigation" aria-label="Pagination Navigation">
+      <ul>
+      <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
+        <li>
+          <a href="?term=<?= $term ?>&show=<?= $show ?>&from=<?= (($i - 1) * $show) ?>"
+            class="btnpage <?= ($i == $current_page) ? 'active" aria-current="true' : '' ?>">
+            <?= $i ?>
+          </a>
+        </li>
+      <?php } ?>
+      </ul>
+    </nav>
+    <?php } ?>
             
         </div>
    
