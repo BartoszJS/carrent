@@ -1,6 +1,6 @@
 <?php
+include 'src/bootstrap.php';    
 include 'includes/database-connection.php'; 
-include 'includes/functions.php'; 
 include 'includes/validate.php';
 
 $errors['email']    ='';
@@ -92,82 +92,83 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php include 'includes/header.php'; ?>
 </head>
 <body>
-<br><br><br><br>
-<form action="rejestracja.php" method="POST" enctype="multipart/form-data"> 
-<br><br>
-    <section class="formularz">
-    <div class="ramka">
-      <br>
-      <h1>Rejestracja</h1> <br>
+<div class="bodylogowanie">
+  <br><br><br><br>
+  <form action="rejestracja.php" method="POST" enctype="multipart/form-data"> 
+  <br><br>
+      <section class="formularz">
+      <div class="ramka">
+        <br>
+        <h1>Rejestracja</h1> <br>
 
 
-        <div class="form-group">
-          <label for="title">  Imie: </label> <br>
-          <input type="text" name="imie" id="imie" value="<?= html_escape($member['imie']) ?>"
-                 class="form-control">
-                 <span class="errors"><?= $errors['imie'] ?></span>
-        </div><br>
+          <div class="form-group">
+            <label for="title">  Imie: </label> <br>
+            <input type="text" name="imie" id="imie" value="<?= html_escape($member['imie']) ?>"
+                  class="form-control">
+                  <span class="errors"><?= $errors['imie'] ?></span>
+          </div><br>
 
-        <div class="form-group">
-          <label for="title">  Nazwisko: </label> <br>
-          <input type="text" name="nazwisko" id="nazwisko" value="<?= html_escape($member['nazwisko']) ?>"
-                 class="form-control">
-                 <span class="errors"><?= $errors['nazwisko'] ?></span>
-        </div><br>
+          <div class="form-group">
+            <label for="title">  Nazwisko: </label> <br>
+            <input type="text" name="nazwisko" id="nazwisko" value="<?= html_escape($member['nazwisko']) ?>"
+                  class="form-control">
+                  <span class="errors"><?= $errors['nazwisko'] ?></span>
+          </div><br>
 
-        <div class="form-group">
-          <label for="title">  E-mail: </label> <br>
-          <input type="text" name="email" id="email" value="<?= html_escape($member['email']) ?>"
-                 class="form-control">
-                 <span class="errors"><?= $errors['email'] ?></span>
-        </div><br>
+          <div class="form-group">
+            <label for="title">  E-mail: </label> <br>
+            <input type="text" name="email" id="email" value="<?= html_escape($member['email']) ?>"
+                  class="form-control">
+                  <span class="errors"><?= $errors['email'] ?></span>
+          </div><br>
 
-        <div class="form-group">
-          <label for="title">  Nr telefonu: </label> <br>
-          <input type="text" name="telefon" id="telefon" value="<?= html_escape($member['telefon']) ?>"
-                 class="form-control">
-                 <span class="errors"><?= $errors['telefon'] ?></span>
-        </div><br>
+          <div class="form-group">
+            <label for="title">  Nr telefonu: </label> <br>
+            <input type="text" name="telefon" id="telefon" value="<?= html_escape($member['telefon']) ?>"
+                  class="form-control">
+                  <span class="errors"><?= $errors['telefon'] ?></span>
+          </div><br>
 
-        <div class="form-group">
-          <label for="title">  Haslo: </label> <br>
-          <input type="password" name="haslo" id="haslo" value="<?= html_escape($member['haslo']) ?>"
-                 class="form-control">
-                 <span class="errors"><?= $errors['haslo'] ?></span>
-        </div><br>
-
-     
-
-        <div class="form-group">
-          <label for="title">  Powtorz haslo: </label> <br>
-          <input type="password" name="potwierdz" id="potwierdz" value="<?= html_escape($confirm) ?>"
-                 class="form-control">
-                 <span class="errors"><?= $errors['potwierdz'] ?></span>
-               
-        </div><br><br>
+          <div class="form-group">
+            <label for="title">  Haslo: </label> <br>
+            <input type="password" name="haslo" id="haslo" value="<?= html_escape($member['haslo']) ?>"
+                  class="form-control">
+                  <span class="errors"><?= $errors['haslo'] ?></span>
+          </div><br>
 
       
 
-        
-
-        <div class="loginbutton">
-        <input type="submit" name="update" class="btn" value="ZAREJESTRUJ SIĘ" class="btn btn-primary">
-        <br><br>
-        </div>
-        <div class="utworz">
-            <span >Masz juz konto?</span>
-            <a href="logowanie.php">Zaloguj się</a>
-        </div>
-        <br>
+          <div class="form-group">
+            <label for="title">  Powtorz haslo: </label> <br>
+            <input type="password" name="potwierdz" id="potwierdz" value="<?= html_escape($confirm) ?>"
+                  class="form-control">
+                  <span class="errors"><?= $errors['potwierdz'] ?></span>
+                
+          </div><br><br>
 
         
 
-        <br>
-     
-      </div>
-    </section>
-    <br>
-</form>
-    
+          
+
+          <div class="loginbutton">
+          <input type="submit" name="update" class="btn" value="ZAREJESTRUJ SIĘ" class="btn btn-primary">
+          <br><br>
+          </div>
+          <div class="utworz">
+              <span >Masz juz konto?</span>
+              <a href="logowanie.php">Zaloguj się</a>
+          </div>
+          <br>
+
+          
+
+          <br>
+      
+        </div>
+      </section>
+      <br>
+  </form>
+</div>      
 </body>
 </html>

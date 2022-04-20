@@ -80,8 +80,8 @@ $data['errors']     = $errors;
     <?php include 'includes/header.php'; ?>    
     <?php }?>
 </head>
-<body>
-
+<body >
+<div class="bodylogowanie">
 
 <?php /* 
 <a class="skip-link" href="#content">Skip to content</a>
@@ -126,7 +126,7 @@ $data['errors']     = $errors;
     <div class="ramka">
       <br>
       <h1>Logowanie</h1> <br>
-
+<br>
 
         <div class="form-group">
           <label for="title">  E-mail: </label> <br>
@@ -160,6 +160,7 @@ $data['errors']     = $errors;
     </section>
     <br>
 </form>
-    
+<br><br><br><br> <br>
+</div>
 </body>
 </html>

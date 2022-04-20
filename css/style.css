@@ -11,6 +11,7 @@
     border: none;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
+    /* background-color: white; */
     
  
  }
@@ -136,12 +137,25 @@
  /* header koniec*/
 
  /* logowanie */
+
+
+
+
+
  .formularz{
+    color: white;
+    background-color: #2f2f2f;
     text-align: center;
     margin: auto;
     width: 25%;
     font-size: 18px;
     /* border: 1px solid black; */
+ }
+
+ .formularz .ramka h1{
+    color: #ffffff;
+    text-shadow: 0 0 5px black;
+    font-weight: 400;
  }
  
 
@@ -153,8 +167,10 @@
     font-size: 1rem;
     line-height: 1.5;
     background-clip: padding-box;
-    border: 1px solid #ced4da;
     border-radius: .25rem;
+    box-shadow: 3px 3px 7px rgb(39, 39, 39);
+    background-color: #000000;
+    color: white;
  }
 
  .form-group{
@@ -164,7 +180,7 @@
  .btn{
     color: #fff;
     font-size: 17px;
-    background: #232323;
+    background: #e7c800;
     /* display: inline-block;
     width: min-content;
     white-space: nowrap; */
@@ -175,11 +191,13 @@
     vertical-align: middle;
     text-transform: uppercase;
     text-align: right;
+    color: black;
+    font-weight: 600;
  }
  .btnzobacz{
-   color: #fff;
+   color: black;
    font-size: 22px;
-   background: #232323;
+   background: #e7c800;;
    /* display: inline-block;
    width: min-content;
    white-space: nowrap; */
@@ -191,6 +209,28 @@
    text-transform: uppercase;
    text-align: right;
    border-radius: 5px 5px 5px 5px;
+   font-weight: 600;
+}
+
+.btnwypo{
+   color: black;
+   font-size: 22px;
+   background: #e7c800;;
+   /* display: inline-block;
+   width: min-content;
+   white-space: nowrap; */
+   border: 1px solid transparent;
+   border-radius: 3px;
+   padding: 10px;
+   line-height: 1.7;
+   
+   text-transform: uppercase;
+   text-align: right;
+   border-radius: 5px 5px 5px 5px;
+   font-weight: 600;
+   
+   
+  
 }
 
  
@@ -209,11 +249,17 @@
      font-size: 16px;
      text-align: left;
      padding-top: 20px;
+     color: rgb(255, 255, 255);
  }
 
  .utworz a{
      font-weight: 600;
+     color: #e7c800;
  }
+
+ .bodylogowanie{
+   background-color: #2f2f2f;
+}
 
   /* logowanie koniec*/
 
@@ -269,7 +315,7 @@ height: 100%;
 
 
   .dalej{
-     background-color: #232323;
+     background-color: #2f2f2f;
      color: white;
   }
 
@@ -280,7 +326,7 @@ height: 100%;
    width: 100%;
    font-size: 24px;
    color: white;
-   background-color: #232323;
+   background-color: #2f2f2f;
 }
 
 .index .ramka {
@@ -292,7 +338,7 @@ height: 100%;
    border-bottom: 1px solid white;
    border-top: 1px solid white;
    box-shadow: var(--box-shadow);
-   background-color: #232323;
+   background-color: #2f2f2f;
      color: white;
 
 }
@@ -345,19 +391,26 @@ height: 100%;
    
 }
  .index p{
-    padding: 0;
-    margin: 0;
+    
+    
    font-size: 18px;
    color: white;
    text-align: left;
+    float: left; 
+   
+  padding: 10px;
+  width: 30%;
   
 } 
 .index #cena{
-   padding-top: 9%;
+   padding-top: 8%;
    font-size: 22px;
    font-weight: 800;
+   color: white;
+   width: 25%;
  
 } 
+
 
 
 
@@ -377,3 +430,116 @@ height: 100%;
 
 
  /* index */
+
+ /* oferty */
+
+
+ .oferty {
+   text-align: center;
+   margin: auto;
+   width: 100%;
+   font-size: 24px;
+   color: white;
+   background-color: #2f2f2f;
+   padding-top: 100px;
+   border-top: 2px solid white;
+}
+
+.oferty .ramka {
+   text-align: center;
+   margin: auto;
+   width: 100%;
+   height: 500px;
+   background-color: white;
+   border-bottom: 1px solid white;
+   border-top: 1px solid white;
+   box-shadow: var(--box-shadow);
+   background-color: #2f2f2f;
+     color: white;
+
+}
+
+/* .index h3{
+   text-align: center;
+   padding-left: 3%;
+   border: 1px solid white;
+   width: 100%;
+   padding: 15px;
+   background-color: white;
+} */
+
+.oferty .place{
+   text-align: center;
+   padding-left: 3%;
+   border-top: 1px solid white;
+   border-bottom: 1px solid white;
+   width: 100%;
+   /* padding: 15px; */
+   background-color: white;
+   padding-bottom: 20px;
+   box-shadow: var(--box-shadow);
+   
+}
+
+.oferty .tekst{
+   text-align: left;
+   color: white;
+   font-size: 22px;
+
+}
+.oferty .column{
+   float: left;
+   width: 54%;
+}
+
+
+.oferty .imie{
+   font-size: 22px;
+   font-weight: 800;
+   padding-left: 10%;
+   color: white;
+   text-align: left;
+   padding-top: 30px;
+   
+}
+ .oferty p{
+    
+    
+   font-size: 18px;
+   color: white;
+   text-align: left;
+    float: left; 
+   
+  padding: 10px;
+  width: 30%;
+  
+} 
+.oferty #cena{
+   padding-top: 8%;
+   font-size: 22px;
+   font-weight: 800;
+   color: white;
+   width: 25%;
+ 
+} 
+
+
+
+
+
+.oferty .column .image-resize {
+   height: 400px;
+   width: 86%;
+   border-radius: 1%;
+   box-shadow: var(--box-shadow);
+   border-radius: 1%;
+   overflow: hidden;
+   object-position: center center;
+   object-fit: cover;
+   padding-top: 25px;
+}
+
+
+
+
+ /* oferty koniec */

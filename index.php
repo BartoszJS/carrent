@@ -12,7 +12,7 @@ $sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,ce
     FROM car
     where wypozyczony=0   
     order by id asc
-    limit 3;";
+    limit 5;";
 $car = pdo($pdo,$sql)->fetchAll();
 
 
@@ -68,12 +68,12 @@ $car = pdo($pdo,$sql)->fetchAll();
                             <?= html_escape($pojedynczo['marka'])?>
                             <?= html_escape($pojedynczo['model'])?> 
                     </div> <br> 
-                        <p>Rocznik: <?= html_escape($pojedynczo['rocznik'])?></p> <br>
+                        <p>Rocznik: <?= html_escape($pojedynczo['rocznik'])?></p> <br><br>
                         <p>Silnik:    <?= html_escape($pojedynczo['silnik'])?>
                         <?= html_escape($pojedynczo['paliwo'])?>
-                        <?= html_escape($pojedynczo['konie'])?> km</p> <br>
-                        <p>Skrzynia biegów: <?= html_escape($pojedynczo['skrzynia'])?></p> <br>
-                        <p id="cena">Cena: <?= html_escape($pojedynczo['cena'])?>zł/24h</p> <br>
+                        <?= html_escape($pojedynczo['konie'])?> km</p> <br> <br>
+                        <p>Skrzynia biegów: <?= html_escape($pojedynczo['skrzynia'])?></p> <br><br>
+                        <p id="cena">Cena: <?= html_escape($pojedynczo['cena'])?>zł/24h</p> <br><br><br><br> <a href="car.php?id=<?= $pojedynczo['id'] ?>" class="btnwypo" >WYPOŻYCZ</a><br>
                         
                             
                             
