@@ -1,4 +1,3 @@
-
 <?php
             
             include 'src/bootstrap.php';    
@@ -24,6 +23,30 @@ if (!$car) {
     header("Location: nieznaleziono.php");  
     exit();                              // Page not found
 }
+$countid="SELECT id from car where id=:id;";
+
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+$rent['id_car']=$_POST['id_car'];
+$rent['id_member']=$_POST['id_member'];
+$rent['data_wypozyczenia']=$_POST['data_wypozyczenia'];
+$rent['czas_wypozyczenia']=$_POST['czas_wypozyczenia'];
+
+$sqlrent="INSERT INTO rent(id_car,id_member,data_wypozyczenia,czas_wypozyczenia)
+values(:id_car,:id_member,:data_wypozyczenia,:czas_wypozyczenia);";
+
+$arguments=$rent;
+
+try{
+    pdo($pdo,$sqlrent,$arguments)  ;  
+    header("Location: index.php"); 
+    exit();
+  }catch(PDOException $e){
+    throw $e;
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,14 +78,12 @@ if (!$car) {
                 <?= "Dane klienta" ?>
             </div> 
             <div class="tekst1">   
-            <p>Imie:   <?= $_SESSION['imie'] ?></p> 
-            <p>Nazwisko:    <?= $_SESSION['nazwisko'] ?> 
+                <p>Imie:   <?= $_SESSION['imie'] ?></p> 
+                <p>Nazwisko:    <?= $_SESSION['nazwisko'] ?> 
             </div>
             <div class="tekst2">
-
-           
-            <p>E-mail:    <?= $_SESSION['email'] ?> 
-            <p>Telefon:    <?= $_SESSION['telefon'] ?> 
+                <p>E-mail:    <?= $_SESSION['email'] ?> 
+                <p>Telefon:    <?= $_SESSION['telefon'] ?> 
             </div> <br>
             <div class="imie">  
                     <?= html_escape($car['marka'])?>
@@ -78,11 +99,13 @@ if (!$car) {
                     <p>Skrzynia biegów: <?= html_escape($car['skrzynia'])?></p> 
                     <p>Liczba miejsc: <?= html_escape($car['liczba_miejsc'])?></p> 
                     <p id="cena">Cena: <?= html_escape($car['cena'])?>zł/24h</p> 
-                       
+                    <input type="text" name="id_car" value="<?= $car['id'] ?>" placeholder="<?= $car['id'] ?>"> 
+                    <input type="text" name="id_member" value="<?= $_SESSION['id'] ?>" placeholder="<?= $_SESSION['id'] ?> "> 
                         
                             
                             
             </div>   
+<form action="wypozycz.php" method="POST" enctype="multipart/form-data"> 
                 <div class="forms">
                     <!-- <label for="start">  Od kiedy: </label> <br>
                     <input type="date" name="start" id="start" value="" class="form-control">
@@ -95,11 +118,14 @@ if (!$car) {
 
                         
                     <label for="dni">  Czas wypożyczenia: </label> 
-                    <input type="text" name="czas_wypozyczenia" id="dni" placeholder="Podaj liczbe dni:"  class="form-con">        
+                    <input type="text" name="czas_wypozyczenia" id="dni" placeholder="Podaj liczbe dni:"  class="form-con">
+                    
+                    
+
                 </div>
-                <a href="wypozycz.php?id=<?= $car['id'] ?>" class="btnpotw" >POTWIERDZ WYPOŻYCZENIE</a><br>  
+                <input type="submit" name="update" class="btnpotw" value="POTWIERDZ WYPOŻYCZENIE"><br>  
         </div>   
-             
+</form>             
     </div>
    
 
