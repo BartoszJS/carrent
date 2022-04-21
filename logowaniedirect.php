@@ -158,5 +158,6 @@ $data['errors']     = $errors;
 </form>
 <br>
 </div>
+<?php include 'includes/footer.php'; ?>
 </body>
 </html>

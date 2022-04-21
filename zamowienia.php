@@ -8,31 +8,17 @@ include 'includes/validate.php';
 // $rolesession = $_SESSION['role'] == 'member' ?? '';
 
 
-$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); // Validate id
-if (!$id) {     
-    header("Location: nieznaleziono.php");  
-    exit();                                         // If no valid id
-}
 
-$sql="SELECT id,imie,nazwisko,email,telefon,data_dolaczenia,role
-    FROM member 
-    where id=:id;";
 
-$member = pdo($pdo, $sql, [$id])->fetch();    // Get article data
-if (!$member) {   
-    header("Location: nieznaleziono.php");  
-    exit();                              // Page not found
-}
 
 $sqlre="SELECT rent.id_car,rent.id_member,rent.data_wypozyczenia,rent.czas_wypozyczenia,
     member.id, car.marka, car.model, car.image,car.wypozyczony,car.cena
     FROM rent
     join member on rent.id_member = member.id
-    left join car on rent.id_car = car.id
-    where member.id = :id;";
+    left join car on rent.id_car = car.id;";
     
 
-$rent = pdo($pdo, $sqlre,[$id])->fetchAll();
+$rent = pdo($pdo, $sqlre)->fetchAll();
 
 
 
@@ -67,24 +53,11 @@ $rent = pdo($pdo, $sqlre,[$id])->fetchAll();
          
 
 
-        <div class="mojekonto">
-            <div class="ramka">
-                    <div class="imie">  
-                    <?= "Dane klienta:" ?>
-                     </div> 
-                <div class="tekst1">   
-                    <p>Imie:   <?= $member['imie'] ?></p> 
-                    <p>Nazwisko:    <?= $member['nazwisko'] ?> 
-                    <p>E-mail:    <?= $member['email'] ?> 
-                    <p>Telefon:    <?= $member['telefon'] ?> 
-                    <p>Data dołączenia:    <?= $member['data_dolaczenia'] ?> 
-                </div> <br>
-            </div>
-            
-        </div>
+    
         <div class="mojekonto2">
             <div class="ramka">
                     <div class="imie">  
+                        <br><br><br><br>
                         <?= "Wypożyczone samochody:" ?>
                      </div> 
                 <div class="tekst1">

@@ -11,6 +11,6 @@
 <body>
 <br><br><br><br><br><br>
 <h1>Zalogowano</h1>
-    
+<?php include 'includes/footer.php'; ?>   
 </body>
 </html>

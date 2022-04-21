@@ -21,5 +21,6 @@ include 'src/bootstrap.php';
     <div class="nieznaleziono">
         <h1>Nieznaleziono strony</h1>
     </div>
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>

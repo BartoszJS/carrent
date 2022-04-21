@@ -10,9 +10,9 @@
             </div>
         </label>
         <ul class="navigatione">
-            <a class="active" href="oferty.php"><li><i class="fa fa-search"></i> <br> Oferty <div class="przerwa"><br></div></li> </a>
+            <a class="active" href="ofertyadmin.php"><li><i class="fa fa-search"></i> <br> Oferty <div class="przerwa"><br></div></li> </a>
             <a class="active" href="klienci.php"><li><i class="fa fa-search"></i> <br> Klienci <div class="przerwa"><br></div></li> </a>
-            <a class="active" href="zamowienia.php"><li> <i class="fa fa-plus"></i>  <br> Zamowienia  <div class="przerwa"><br></div></li> </a>
+            <a class="active" href="zamowienia.php"><li> <i class="fa fa-plus"></i>  <br> Wypożyczenia  <div class="przerwa"><br></div></li> </a>
             <a class="active" href="logout.php"><li><i class="fa fa-search"></i> <br> Wyloguj się  <div class="przerwa"><br></div></li> </a>
             
         </ul>

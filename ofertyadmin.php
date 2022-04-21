@@ -106,17 +106,17 @@ if ($count > $show) {                                     // If matches is more 
       -->
       <div class="oferty" id="oferty">
 
-      <div class="place">
-    
+      <div class="adminplace">
+     
     <br>
         <form action="oferty.php" method="get" class="form-search">
                 <label for="search"><span> </span></label>
                 <input type="text" name="term" 
                     id="search" placeholder="Wpisz marke:"  
                 /><input type="submit" value="Szukaj" class="btnpage" />
-                
+                <a href="dodaj.php" class="btndodaj" >DODAJ SAMOCHÓD</a><br>  
         </form>
-
+       
         
 
             <?php if ($term) { ?><p><b>Znaleziono:</b> <?= $count ?></p><?php } ?>

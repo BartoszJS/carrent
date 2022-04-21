@@ -154,7 +154,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
           
 
           <div class="loginbutton">
-          <input type="submit" name="update" class="btn" value="ZAREJESTRUJ SIĘ" class="btn btn-primary">
+          <input type="submit" name="update" class="btndodaj" value="ZAREJESTRUJ SIĘ" class="btn btn-primary">
           <br><br>
           </div>
           <div class="utworz">
@@ -171,6 +171,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       </section>
       <br>
   </form>
-</div>      
+</div>  
+<?php include 'includes/footer.php'; ?>    
 </body>
 </html>

@@ -104,6 +104,6 @@ $rent = pdo($pdo, $sqlre,[$id])->fetchAll();
             </div>
             
         </div>
-        <?php include 'includes/footer.php'; ?>   
+        <?php include 'includes/footer.php'; ?>  
 </body>
 </html>

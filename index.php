@@ -11,7 +11,7 @@ include 'includes/validate.php';
 $sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,cena,liczba_miejsc,wypozyczony,image
     FROM car
     where wypozyczony=0   
-    order by id asc
+    order by id desc
     limit 5;";
 $car = pdo($pdo,$sql)->fetchAll();
 
@@ -87,10 +87,10 @@ $car = pdo($pdo,$sql)->fetchAll();
 
                 </div>
     <?php }?>
-    <div class="przerwa"></div>
-    <a href="oferty.php ?>" class="btnwypo" >PEŁNA OFERTA</a><br>  
+    <div class="przerwaa"></div>
+    <a href="oferty.php" class="btnwypo" >PEŁNA OFERTA</a><br>  
             
         </div>
-   
+<?php include 'includes/footer.php'; ?>
 </body>
 </html>

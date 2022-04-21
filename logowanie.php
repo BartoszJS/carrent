@@ -158,7 +158,7 @@ $data['errors']     = $errors;
         </div><br><br>
 
         <div class="loginbutton">
-        <input type="submit" name="update" class="btn" value="ZALOGUJ SIĘ" class="btn btn-primary">
+        <input type="submit" name="update" class="btndodaj" value="ZALOGUJ SIĘ" class="btn btn-primary">
         <br><br>
         </div>
         <div class="utworz">
@@ -177,5 +177,6 @@ $data['errors']     = $errors;
 </form>
 <br><br><br><br> <br>
 </div>
+<?php include 'includes/footer.php'; ?>
 </body>
 </html>

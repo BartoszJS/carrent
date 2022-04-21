@@ -111,6 +111,6 @@ $countid="SELECT id from car where id=:id;";
    
 
 
-   
+    <?php include 'includes/footer.php'; ?>  
     </body>
     </html>
