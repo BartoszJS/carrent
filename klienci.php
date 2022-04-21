@@ -7,7 +7,7 @@ include 'includes/validate.php';
 // include 'includes/functions.php';
 // $rolesession = $_SESSION['role'] == 'member' ?? '';
 
-
+is_admin($session->role); 
 
 
 $sql="SELECT id,imie,nazwisko,email,telefon,data_dolaczenia,role

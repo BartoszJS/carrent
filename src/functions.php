@@ -16,20 +16,22 @@ function html_escape($text): string
     return htmlspecialchars($text, ENT_QUOTES, 'UTF-8', false); // Return escaped string
 }
 
+function is_member($role)
+{
+    if ($role !== 'admin' and $role !== 'member') {                                   // If role is not admin
+        header('Location: nieznaleziono.php');                                 // Send to home page
+        exit;                                                  // Stop code running
+    }
+}
+
 function is_admin($role)
 {
     if ($role !== 'admin') {                                   // If role is not admin
-        header('Location: ' . DOC_ROOT);                       // Send to home page
+        header('Location: nieznaleziono.php');                       // Send to home page
         exit;                                                  // Stop code running
     }
 }
-function is_member($role)
-{
-    if ($role !== 'member') {                                   // If role is not admin
-        header('Location: logowaniedirect.php');                       // Send to home page
-        exit;                                                  // Stop code running
-    }
-}
+
 
 
 
