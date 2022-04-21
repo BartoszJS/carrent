@@ -48,35 +48,37 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   
       $invalid = implode($errors);
   
-      if ($invalid) {                                              // If invalid
-        $errors['warning'] = 'Popraw poniższe błędy';  // Store message
-    } else {
+    //   if ($invalid) {                                              // If invalid
+    //     $errors['warning'] = 'Popraw poniższe błędy';  // Store message
+    // } else {
   
-      $sql="INSERT INTO member(imie,nazwisko,email,haslo,telefon,role)
-      values (:imie,:nazwisko,:email,:haslo,:telefon,'member');";
+    //   $sql="INSERT INTO member(imie,nazwisko,email,haslo,telefon,role)
+    //   values (:imie,:nazwisko,:email,:haslo,:telefon,'member');";
     
-      $arguments=$member;
+    //   $arguments=$member;
   
-      try{
-        pdo($pdo,$sql,$arguments)  ;  
-        header("Location: logowanie.php"); 
-        exit();
-      }catch(PDOException $e){
-        throw $e;
+    //   try{
+    //     pdo($pdo,$sql,$arguments)  ;  
+    //     header("Location: logowanie.php"); 
+    //     exit();
+    //   }catch(PDOException $e){
+    //     throw $e;
+    //   }
+
+
+    
+  
+
+    if (!$invalid) {                                         // If no errors
+      $result = $cms->getMember()->create($member);        // Create member
+      if ($result === false) {                             // If result is false
+          $errors['email'] = 'Email address already used'; // Store a warning
+      } else {                                             // Otherwise send to login
+          redirect('../logowanie.php'); 
       }
-    }
-
-  //   if (!$invalid) {                                         // If no errors
-  //     $result = $cms->getMember()->create($member);        // Create member
-  //     if ($result === false) {                             // If result is false
-  //         $errors['email'] = 'Email address already used'; // Store a warning
-  //     } else {                                             // Otherwise send to login
-  //         redirect('logowanie.php', ['success' => 'Thanks for joining! Please log in.']); 
-  //     }
-  // }
-
   }
 
+  }
 
 ?>
 

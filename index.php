@@ -77,7 +77,8 @@ $car = pdo($pdo,$sql)->fetchAll();
                         
                             
                             
-                    </div>   
+                    </div> 
+                   
                         
                     
                     
@@ -86,6 +87,8 @@ $car = pdo($pdo,$sql)->fetchAll();
 
                 </div>
     <?php }?>
+    <div class="przerwa"></div>
+    <a href="oferty.php ?>" class="btnwypo" >PEŁNA OFERTA</a><br>  
             
         </div>
    

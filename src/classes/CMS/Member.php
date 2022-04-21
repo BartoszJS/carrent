@@ -46,14 +46,14 @@ class Member
         if (!$member) {                                          // If no member found
             return false;                                        // Return false
         }           
-        if($haslo == $member['haslo']){
-        return $member;
-        }else{
+        // if($haslo == $member['haslo']){
+        // return $member;
+        // }else{
 
-            return false;
-        }
-        // $authenticated = password_verify($haslo, $member['haslo']); // Passwords match?
-        // return ($authenticated ? $member : false);               // Return member or false
+        //     return false;
+        // }
+        $authenticated = password_verify($haslo, $member['haslo']); // Passwords match?
+        return ($authenticated ? $member : false);               // Return member or false
     }
 
     // Get total number of members

@@ -30,7 +30,8 @@
     display: block;
     background-color: #232323;
     position: fixed;
-    box-shadow: var(--box-shadow)
+    box-shadow: var(--box-shadow);
+    border-bottom: 1px solid white;
  }
  
  .inner_header {
@@ -352,6 +353,10 @@ height: 100%;
      color: white;
 
 }
+.przerwa{
+   text-align: left;
+   padding: 25px;
+}
 .index .ramka:first-child {
   padding-top: 50px;
  margin-bottom: 40px;
@@ -492,7 +497,7 @@ height: 100%;
    color: white;
    background-color: #2f2f2f;
    padding-top: 100px;
-   border-top: 2px solid white;
+
 }
 
 .oferty .ramka {
@@ -633,7 +638,7 @@ height: 100%;
    color: white;
    background-color: #2f2f2f;
    padding-top: 100px;
-   border-top: 2px solid white;
+
 }
 
 .oferta .ramka {
@@ -922,3 +927,69 @@ height: 100%;
 }
 
  /* wypozycz koniec*/
+
+  /* moje konto*/
+
+
+.mojekonto{
+   padding-top: 120px;
+   text-align: center;
+   color: white;
+   font-size: 20px;
+   border-bottom: 1px solid white;
+}
+.mojekonto p{
+   padding: 10px;
+}
+
+.mojekonto .ramka{
+
+   width: 30%;
+   margin-left: auto;
+   margin-right: auto;
+
+   text-align: left;
+}
+.mojekonto .imie{
+   font-weight: 600;
+   font-size: 24px;
+
+}
+
+
+.mojekonto2{
+   padding-top: 15px;
+   text-align: center;
+   color: white;
+   font-size: 20px;
+   border-bottom: 1px solid white;
+}
+.mojekonto2 p{
+   padding: 10px;
+
+}
+
+.mojekonto2 .price{
+  
+   padding-left: 30%;
+}
+
+.mojekonto2 .ramka{
+
+   width: 30%;
+   margin-left: auto;
+   margin-right: auto;
+   text-align: left;
+}
+.mojekonto2 .imie{
+   font-weight: 600;
+   font-size: 24px;
+   padding-bottom: 10px;
+  
+
+}
+.onerent{
+   border-top: 1px solid white;
+
+}
+  /* moje konto koniec*/

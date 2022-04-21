@@ -22,6 +22,7 @@ $errors['haslo']    ='';
 $errors['potwierdz']    ='';
 $errors['telefon']  ='';
 $errors['message']  ='';
+$errors['warning'] ='';
 
 $success = $_GET['success'] ?? null;
 
@@ -41,8 +42,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
           
 
     if($invalid){
-      $_SESSION['id'] = 0;
-      $errors['message']='Sprobuj ponownie';
+      $errors['warning']='Sprobuj ponownie';
     }else{
       $member = $cms->getMember()->login($email, $haslo); // Get member details
       if ($member) {                                   // Otherwise for members
@@ -50,8 +50,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
           //redirect('member.php', ['id' => $member['id'],]);
           redirect('../index.php');  // Redirect to their page
       } else {                                               // Otherwise
-          $errors['message'] = 'Please try again.';   
-          $_SESSION['id'] = 0   ;   // Store error message
+          $errors['warning'] = 'Nieprawidłowe dane';      // Store error message
       }
     }
 }
@@ -71,7 +70,15 @@ $data['errors']     = $errors;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Logowanie</title>
-    <?php if (isset($_SESSION['id'])){ ?> 
+    <?php /*if (isset($_SESSION['id'])){ 
+    <?php if($_SESSION['id'] == 0){ ?>
+    <?php include 'includes/header.php'; ?>
+    <?php }elseif($_SESSION['role'] == 'admin'){ ?>
+    <?php include 'includes/headeradmin.php'; ?>
+    <?php }else{ ?> 
+    <?php include 'includes/headermember.php'; ?>    
+    <?php }?>*/?> 
+        <?php if (isset($_SESSION['role'])){ ?> 
     <?php if($_SESSION['role'] == 'member'){ ?>
     <?php include 'includes/headermember.php'; ?>
     <?php }elseif($_SESSION['role'] == 'admin'){ ?>
@@ -131,6 +138,10 @@ $data['errors']     = $errors;
       <br>
       <h1>Logowanie</h1> <br>
 <br>
+
+<?php if ($errors['warning']) { ?>
+        <div class="error"><?= $errors['warning'] ?></div>
+      <?php } ?>
 
         <div class="form-group">
           <label for="title">  E-mail: </label> <br>

@@ -43,7 +43,13 @@ class Session
     // Delete existing session
     public function delete()
     {
-        $_SESSION = [];                                  // Empty $_SESSION superglobal
+        $_SESSION['id'] = 0;          // Set id property of this object
+        $_SESSION['imie'] = '';   // Set imie property of this object
+        $_SESSION['nazwisko'] = '';   // Set imie property of this object
+        $_SESSION['email'] = '';   // Set imie property of this object
+        $_SESSION['telefon'] = '';   // Set imie property of this object
+        $_SESSION['data_dolaczenia'] = '';   // Set imie property of this object
+        $_SESSION['role'] = 'public';                                 // Empty $_SESSION superglobal
         $param    = session_get_cookie_params();         // Get session cookie parameters
         setcookie(session_name(), '', time() - 2400, $param['path'], $param['domain'],
             $param['secure'], $param['httponly']);       // Clear session cookie

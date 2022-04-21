@@ -93,7 +93,7 @@ $countid="SELECT id from car where id=:id;";
                     <label for="start">Start date:</label> -->
                     <label for="start">  Data wypożyczenia: </label>
                     <?php  $d=strtotime("+12 Months");?>
-                    <input type="date" id="start" name="data_wypozyczenia"
+                    <input type="datetime-local" id="start" name="data_wypozyczenia"
                         value="<?php date("Y-m-d h:i:sa") ?>"
                         min="<?php date("Y-m-d h:i:sa") ?>" max="<?php date("Y-m-d h:i:sa", $d) ?>" > <br><br>
 

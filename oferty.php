@@ -87,7 +87,7 @@ if ($count > $show) {                                     // If matches is more 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Strona główna</title>
-    <?php if (isset($_SESSION['id'])){ ?> 
+    <?php if (isset($_SESSION['role'])){ ?> 
     <?php if($_SESSION['role'] == 'member'){ ?>
     <?php include 'includes/headermember.php'; ?>
     <?php }elseif($_SESSION['role'] == 'admin'){ ?>
@@ -142,7 +142,8 @@ if ($count > $show) {                                     // If matches is more 
                         <?= html_escape($pojedynczo['paliwo'])?>
                         <?= html_escape($pojedynczo['konie'])?> km</p> <br> <br>
                         <p>Skrzynia biegów: <?= html_escape($pojedynczo['skrzynia'])?></p> <br><br>
-                        <p id="cena">Cena: <?= html_escape($pojedynczo['cena'])?>zł/24h</p> <br><br><br><br> <a href="car.php?id=<?= $pojedynczo['id'] ?>" class="btnwypo" >WYPOŻYCZ</a><br>
+                        <p id="cena">Cena: <?= html_escape($pojedynczo['cena'])?>zł/24h</p> <br><br><br><br> 
+                        <a href="wypozycz.php?id=<?= $pojedynczo['id'] ?>" class="btnwypo" >WYPOŻYCZ</a><br>
                         
                             
                             
