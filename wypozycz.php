@@ -1,15 +1,15 @@
 <?php
             
-            include 'src/bootstrap.php';    
-            include 'includes/database-connection.php'; 
-            include 'includes/validate.php';
+include 'src/bootstrap.php';    
+include 'includes/database-connection.php'; 
+include 'includes/validate.php';
             
             
-            $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); // Validate id
-            if (!$id) {     
-                header("Location: nieznaleziono.php");  
-                exit();                                         // If no valid id
-            }
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); // Validate id
+if (!$id) {     
+    header("Location: nieznaleziono.php");  
+    exit();                                         // If no valid id
+}
 
 
 is_member($session->role);  

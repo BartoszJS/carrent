@@ -140,9 +140,11 @@ if ($count > $show) {                                     // If matches is more 
                         <p>Rocznik: <?= html_escape($pojedynczo['rocznik'])?></p> <br><br>
                         <p>Silnik:    <?= html_escape($pojedynczo['silnik'])?>
                         <?= html_escape($pojedynczo['paliwo'])?>
-                        <?= html_escape($pojedynczo['konie'])?> km</p> <br> <br>
-                        <p>Skrzynia biegów: <?= html_escape($pojedynczo['skrzynia'])?></p> <br><br>
-                        <p id="cena">Cena: <?= html_escape($pojedynczo['cena'])?>zł/24h</p> <br><br><br><br> 
+                        <?= html_escape($pojedynczo['konie'])?> km</p> <br> 
+                        <p>Skrzynia biegów: <?= html_escape($pojedynczo['skrzynia'])?></p> <br>
+                        <p id="cena">Cena: <?= html_escape($pojedynczo['cena'])?>zł/24h</p> 
+                        <a href="edytujadmin.php?id=<?= $pojedynczo['id'] ?>" class="btnedytuj" >EDYTUJ</a><br> <br>
+                        <a href="usunadmin.php?id=<?= $pojedynczo['id'] ?>" class="btnusun" >USUŃ</a><br> <br>
                         <a href="wypozycz.php?id=<?= $pojedynczo['id'] ?>" class="btnwypo" >WYPOŻYCZ</a><br>
                         
                             
@@ -173,6 +175,6 @@ if ($count > $show) {                                     // If matches is more 
     <?php } ?>
             
         </div>
-        <?php include 'includes/footer.php'; ?>   
+<?php include 'includes/footer.php'; ?>   
 </body>
 </html>

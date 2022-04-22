@@ -1,62 +1,16 @@
-   public function __construct()
-    {                                                    // Runs when object created
-        session_start();                                 // Start, or restart, session
-        $this->id       = $_SESSION['id'] ?? 0;          // Set id property of this object
-        $this->imie = $_SESSION['imie'] ?? '';   // Set imie property of this object
-        $this->nazwisko = $_SESSION['nazwisko'] ?? '';   // Set imie property of this object
-        $this->email = $_SESSION['email'] ?? '';   // Set imie property of this object
-        $this->telefon = $_SESSION['telefon'] ?? '';   // Set imie property of this object
-        $this->data_dolaczenia = $_SESSION['data_dolaczenia'] ?? '';   // Set imie property of this object
-        $this->role     = $_SESSION['role'] ?? 'public'; // Set role property of this object
-    }
-
-    // Create new session
-    public function create($member)
-    {
-        session_regenerate_id(true);                     // Update session id
-        $_SESSION['id']       = $member['id'];           // Add member id to session
-        $_SESSION['imie'] = $member['imie'];     // Add imie to session
-        $_SESSION['nazwisko']     = $member['nazwisko'];
-        $_SESSION['email'] = $member['email'];     // Add imie to session
-        $_SESSION['telefon']     = $member['telefon'];   
-        $_SESSION['data_dolaczenia']     = $member['data_dolaczenia'];
-        $_SESSION['role']     = $member['role'];        // Add role to session
-    }
-
-
-        <?= $_SESSION['imie'] ?>
-                    <?= $_SESSION['nazwisko'] ?>
-
-
-
-
-
-
-
-
-
-                    <label for="image">Edytuj zdjęcie samochodu:</label>
-                <div class="image-edytuj">
-                    <img src="uploads/<?= html_escape($car['image']) ?>"><br>
-                    <span class="errors"><?= $errors['image'] ?></span>
-                    </div><br>
-
-
-
-
-
-
-
 <?php
-declare(strict_types = 1);   
-include 'src/bootstrap.php';    
-include 'includes/database-connection.php'; 
+declare(strict_types = 1);                                         // Use strict types
+include 'includes/database-connection.php';                     // Database connection
+include 'src/functions.php';                               // Functions
 include 'includes/validate.php';
 
-$uploads = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
-            
-$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); 
 
+
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); // Validate id
+if (!$id) {     
+    header("Location: nieznaleziono.php");  
+    exit();                                         // If no valid id
+}
 
 $errors['marka']='';
 $errors['model']='';
@@ -80,10 +34,13 @@ $car['konie']='';
 $car['skrzynia']='';
 $car['cena']='';
 $car['liczba_miejsc']='';
+$car['wypozyczony']=0;
 $car['image']='';
+$car['kiedy_dodany']='';
 
-if($id){
-    $sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,cena,liczba_miejsc,wypozyczony,image
+// $car['image']='';
+
+$sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,cena,liczba_miejsc,wypozyczony,image
     FROM car 
     where id=:id;";
 
@@ -92,15 +49,11 @@ if (!$car) {
     header("Location: nieznaleziono.php");  
     exit();                              // Page not found
 }
-// $countid="SELECT id from car where id=:id;";
-}
-
-
 
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-
+    $car['id']=$_POST['id'];
     $car['marka']=$_POST['marka'];
     $car['model']=$_POST['model'];
     $car['rocznik']=$_POST['rocznik'];
@@ -110,22 +63,32 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $car['skrzynia']=$_POST['skrzynia'];
     $car['cena']=$_POST['cena'];
     $car['liczba_miejsc']=$_POST['liczba_miejsc'];
+    $car['wypozyczony']=$_POST['wypozyczony'];
+    $car['image']=$_POST['image'];;
+    $car['kiedy_dodany']=$_POST['kiedy_dodany'];;  
 
   
-    $arguments=$car;
-     
+    $arguments=$car;    
+  
+  
     $sql="UPDATE car 
-                set marka = :marka, model =: model,rocznik =: rocznik , silnik =: silnik,
-                paliwo =: paliwo , konie =: konie,
-                skrzynia =: skrzynia, cena =:cena, liczba_miejsc=:liczba_miejsc
-                where id=:id;";
- 
+          set marka=:marka,model=:model,rocznik=:rocznik,silnik=:silnik,
+          paliwo=:paliwo,konie=:konie,
+          skrzynia=:skrzynia,cena=:cena,liczba_miejsc=:liczba_miejsc,
+          wypozyczony=:wypozyczony,image=:image,kiedy_dodany=:kiedy_dodany
+          where id=:id;";
    
+
+    try{       
       pdo($pdo,$sql,$arguments);  
-      $pdo->commit();     
-      redirect('index.php'); 
+      header("Location: car.php?id=".$id); 
       exit();
-}
+    }catch(PDOException $e){
+      $pdo->rollBack();   
+      throw $e;
+    }
+
+  }
 
 ?>
 
@@ -141,22 +104,30 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php include 'includes/header.php'; ?>
 </head>
 <body>
-  <br>
+<div class="bodylogowanie">
+  <br><br><br><br>
   <form action="edytujadmin.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data"> 
-      
-    
-  <div class="wypozycz">
-  <h2>Edytuj samochód:</h2>
-        <div class="ramka">
-            <div class="column">
-                <img class="image-resize" src="uploads/<?= html_escape($car['image']) ?>">
-            </div> 
-        </div>        
-    </div>     
-            
-        </div>
-            <section class="formularz">
+  <br><br>
+      <section class="formularz">
       <div class="ramka">
+        <br>
+        <h1>Dodawanie samochodu</h1> <br>
+
+        <!-- <label for="image">Dodaj zdjęcie samochodu:</label>
+            <div class="form-group image-placeholder">
+              <input type="file" name="image" class="form-control-file" id="image"
+              accept="image/jpeg,image/jpg,image/png"><br>
+              <span class="errors"><?= $errors['image'] ?></span>
+            </div><br> -->
+            <input type="hidden" name="id" id="id" value="<?= html_escape($car['id']) ?>"
+                  class="form-control">
+            <input type="hidden" name="wypozyczony" id="wypozyczony" value="<?= html_escape($car['wypozyczony']) ?>"
+                  class="form-control">
+            <input type="hidden" name="image" id="image" value="<?= html_escape($car['image']) ?>"
+                  class="form-control">
+            <input type="hidden" name="kiedy_dodany" id="kiedy_dodany" value="<?= html_escape($car['kiedy_dodany']) ?>"
+                  class="form-control">
+
           <div class="form-group">
             <label for="title">  Marka: </label> <br>
             <input type="text" name="marka" id="marka" value="<?= html_escape($car['marka']) ?>"
@@ -220,7 +191,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
           
           <div class="loginbutton">
-          <input type="submit" name="update" class="btndodaj" value="EDYTUJ" class="btn btn-primary">
+          <input type="submit" name="update" class="btndodaj" value="EDYTUJ SAMOCHÓD" class="btn btn-primary">
           <br><br>
           </div>
       
@@ -228,11 +199,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       </section>
       <br>
   </form>
- 
+</div>  
 <?php include 'includes/footer.php'; ?>    
 </body>
 </html>
-
-
-
-   
