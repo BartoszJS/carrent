@@ -7,6 +7,8 @@ include 'includes/validate.php';
 // include 'includes/functions.php';
 // $rolesession = $_SESSION['role'] == 'member' ?? '';
 
+is_admin($session->role);  
+
 $term  = filter_input(INPUT_GET, 'term');                 // Get search term
 $show  = filter_input(INPUT_GET, 'show', FILTER_VALIDATE_INT) ?? 3; // Limit
 $from  = filter_input(INPUT_GET, 'from', FILTER_VALIDATE_INT) ?? 0; // Offset

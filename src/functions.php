@@ -19,7 +19,7 @@ function html_escape($text): string
 function is_member($role)
 {
     if ($role !== 'admin' and $role !== 'member') {                                   // If role is not admin
-        header('Location: nieznaleziono.php');                                 // Send to home page
+        header('Location: logowanie.php');                                 // Send to home page
         exit;                                                  // Stop code running
     }
 }

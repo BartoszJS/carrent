@@ -111,7 +111,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       <section class="formularz">
       <div class="ramka">
         <br>
-        <h1>Dodawanie samochodu</h1> <br>
+        <h1>Edycja samochodu:</h1> <br>
 
         <!-- <label for="image">Dodaj zdjęcie samochodu:</label>
             <div class="form-group image-placeholder">

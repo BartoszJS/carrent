@@ -14,17 +14,23 @@ if (!$id) {
 
 is_admin($session->role);  
 
-$sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,cena,liczba_miejsc,wypozyczony,image
-    FROM car 
-    where id=:id;";
+
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+$sqlre="DELETE FROM rent where id_car=:id;";
+$car = pdo($pdo, $sqlre, [$id])->fetch(); 
+
+$sql="DELETE FROM car where id=:id;";
 
 $car = pdo($pdo, $sql, [$id])->fetch();    // Get article data
 if (!$car) {   
-    header("Location: nieznaleziono.php");  
+    header("Location: index.php");  
     exit();                              // Page not found
 }
-$countid="SELECT id from car where id=:id;";
 
+
+
+}
 
 
 ?>
@@ -44,6 +50,28 @@ $countid="SELECT id from car where id=:id;";
     <?php }}else{ ?> 
     <?php include 'includes/header.php'; ?>    
     <?php }?>
+
+    </head>
+<body>
+
+
+
+    <form action="usunadmin.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data"> 
+    <br><br>
+      <section class="formularz">
+      <div class="ramka">
+        <br><br><br><br>
+        <h1>Usunąć samochód?:</h1> <br>
+          <div class="loginbutton">
+          <input type="submit" name="update" class="btndodaj" value="USUŃ" class="btn btn-primary">
+          <a href="ofertyadmin.php" class="btndodaj">ANULUJ</a>
+          <br><br>
+          </div>
+      
+        </div>
+      </section>
+      <br>
+  </form>
     
     </head>
     <body>
