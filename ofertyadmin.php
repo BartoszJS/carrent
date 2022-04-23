@@ -34,6 +34,15 @@ if(!$term){
 }
 
 
+$sqlre="SELECT rent.id_car,rent.id_member,rent.data_wypozyczenia,rent.czas_wypozyczenia,
+    member.id, car.marka, car.model, car.image,car.wypozyczony,car.cena
+    FROM rent
+    join member on rent.id_member = member.id
+    left join car on rent.id_car = car.id;";
+    
+
+$rent = pdo($pdo, $sqlre)->fetchAll();
+
 
 
 if($term){
@@ -76,11 +85,12 @@ if ($count > $show) {                                     // If matches is more 
 }
 
 
+$cars=$car;
+$cars['rented']='';
 
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,8 +137,28 @@ if ($count > $show) {                                     // If matches is more 
 
 
         
-            <?php foreach($car as $pojedynczo) { ?> 
-                <div class="ramka">
+        
+    <?php foreach($car as $pojedynczo) { ?>  
+                <?php $flaga=true; ?>
+                <?php foreach($rent as $renty) { ?> 
+                    
+
+                    <?php $czas_wypozyczenia= $renty['czas_wypozyczenia'];?>
+                    <?php $data_wypozyczenia= $renty['data_wypozyczenia'];?>
+                    <?php $data= strtotime($renty['data_wypozyczenia']);?>
+
+                    <?php $do=date("Y-m-d h:i:s",strtotime($data_wypozyczenia.' + '.$czas_wypozyczenia.' days'));?>
+
+                    <?php $teraz= date("Y-m-d h:i:s");?>
+
+                    <?php if((($renty['id_car']==$pojedynczo['id']))&&(($data_wypozyczenia<$teraz)&&($do>$teraz))){?>
+                        <?php $flaga=false; ?>
+                        <?php }?>
+                        
+
+                <?php }?>
+                <?php if($flaga==true) {?>
+                    <div class="ramka">
                     <a href="car.php?id=<?= $pojedynczo['id'] ?>">
                     <div class="imie">  </div>
                     <div class="column">
@@ -145,21 +175,47 @@ if ($count > $show) {                                     // If matches is more 
                         <?= html_escape($pojedynczo['konie'])?> km</p> <br> 
                         <p>Skrzynia biegów: <?= html_escape($pojedynczo['skrzynia'])?></p> <br>
                         <p id="cena">Cena: <?= html_escape($pojedynczo['cena'])?>zł/24h</p> 
-                        <a href="edytujadmin.php?id=<?= $pojedynczo['id'] ?>" class="btnedytuj" >EDYTUJ</a><br> <br>
-                        <a href="usunadmin.php?id=<?= $pojedynczo['id'] ?>" class="btnusun" >USUŃ</a><br> <br>
-                        <a href="wypozycz.php?id=<?= $pojedynczo['id'] ?>" class="btnwypo" >WYPOŻYCZ</a><br>
-                        
+                            <a href="edytujadmin.php?id=<?= $pojedynczo['id'] ?>" class="btnedytuj" >EDYTUJ</a><br> <br>
+                            <a href="usunadmin.php?id=<?= $pojedynczo['id'] ?>" class="btnusun" >USUŃ</a><br> <br>
+                            <a href="wypozycz.php?id=<?= $pojedynczo['id'] ?>" class="btnwypo" >WYPOŻYCZ</a><br>
                             
+                        </div>   
+                            <br>
+                        </a>
+                        </div>
+           
+            <?php } else { ?>
+                <div class="ramka">
+                    <a href="car.php?id=<?= $pojedynczo['id'] ?>">
+                    <div class="imie">  </div>
+                    <div class="column">
+                            <img class="image-resize" src="uploads/<?= html_escape($pojedynczo['image'] ?? 'blank.png') ?>">
+                        </div> 
+                    <div class="tekst">
+                    <div class="imie">  
+                    <p id="dostepnosc">Aktualnie niedostępny</p> <br><br><br>
+                            <?= html_escape($pojedynczo['marka'])?>
+                            <?= html_escape($pojedynczo['model'])?> 
+                    </div> <br> 
+                        <p>Rocznik: <?= html_escape($pojedynczo['rocznik'])?></p> <br><br>
+                        <p>Silnik:    <?= html_escape($pojedynczo['silnik'])?>
+                        <?= html_escape($pojedynczo['paliwo'])?>
+                        <?= html_escape($pojedynczo['konie'])?> km</p> <br> 
+                        <p>Skrzynia biegów: <?= html_escape($pojedynczo['skrzynia'])?></p> <br>
+                        <p id="cena">Cena: <?= html_escape($pojedynczo['cena'])?>zł/24h</p> 
+                            <a href="edytujadmin.php?id=<?= $pojedynczo['id'] ?>" class="btnedytuj" >EDYTUJ</a><br> <br>
+                            <a href="usunadmin.php?id=<?= $pojedynczo['id'] ?>" class="btnusun" >USUŃ</a><br> <br>
+                            <a href="wypozycz.php?id=<?= $pojedynczo['id'] ?>" class="btnwypo" >WYPOŻYCZ</a><br>
+                            <a href="wypozycz.php?id=<?= $pojedynczo['id'] ?>" class="btnwypo" >SPRAWDZ TERMINY</a><br>
+                            </a>
+                        </div>   
                             
-                    </div>   
+                      
+                        </div>
                         
-                    
-                    
-                        <br>
-                    </a>
-
-                </div>
+                    <?php } ?>
     <?php }?>
+
 
     <?php  if ($count > $show) { ?>
     <nav class="pagination" role="navigation" aria-label="Pagination Navigation">

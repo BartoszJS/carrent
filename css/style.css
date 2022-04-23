@@ -662,6 +662,7 @@ height: 100%;
 .oferty .column{
    float: left;
    width: 54%;
+
 }
 
 
@@ -684,16 +685,30 @@ height: 100%;
    
   padding: 10px;
   width: 30%;
+
   
 } 
 .oferty #cena{
-   padding-top: 8%;
+   padding-top: 6%;
    font-size: 22px;
    font-weight: 800;
    color: white;
    width: 30%;
+
+} 
+.oferty #cenaa{
+   font-size: 22px;
+   font-weight: 800;
+   color: white;
+   width: 20%;
  
 } 
+.oferty #dostepnosc{
+   color: red;
+   font-size: 28px;
+   font-weight: 800;
+
+}
 
 
 
@@ -1190,4 +1205,6 @@ height: 100%;
 .szary{
    background-color: #000000;
 }
+
+
 
