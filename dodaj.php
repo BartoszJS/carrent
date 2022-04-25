@@ -1,7 +1,7 @@
 <?php
 include 'src/bootstrap.php';    
-include 'includes/database-connection.php'; 
-include 'includes/validate.php';
+include 'src/database-connection.php'; 
+include 'src/validate.php';
 
 $upload_path = dirname(__FILE__).DIRECTORY_SEPARATOR. 'uploads'.DIRECTORY_SEPARATOR;
 

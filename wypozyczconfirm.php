@@ -1,8 +1,8 @@
 <?php
             
             include 'src/bootstrap.php';    
-            include 'includes/database-connection.php'; 
-            include 'includes/validate.php';
+            include 'src/database-connection.php'; 
+            include 'src/validate.php';
             
 
             if($_SERVER['REQUEST_METHOD'] == 'POST') {

@@ -2,8 +2,8 @@
 declare(strict_types = 1);                               // Use strict types
 use PhpBook\Validate\Validate;                           // Import Validate class
 include 'src/bootstrap.php';    
-include 'includes/database-connection.php'; 
-include 'includes/validate.php';
+include 'src/database-connection.php'; 
+include 'src/validate.php';
 $errors =[];
 
 

@@ -1,8 +1,8 @@
 <?php
 declare(strict_types = 1);                                         // Use strict types
-include 'includes/database-connection.php';                     // Database connection
+include 'src/database-connection.php';                     // Database connection
 include 'src/functions.php';                               // Functions
-include 'includes/validate.php';
+include 'src/validate.php';
 
 
 
