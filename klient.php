@@ -1,6 +1,4 @@
-<?php
-declare(strict_types = 1);                               // Use strict types
-use PhpBook\Validate\Validate;                           // Import Validate class
+<?php                      
 include 'src/bootstrap.php';    
 include 'src/database-connection.php'; 
 include 'src/validate.php';
@@ -14,25 +12,18 @@ if (!$id) {
     exit();                                         // If no valid id
 }
 
-$sql="SELECT id,imie,nazwisko,email,telefon,data_dolaczenia,role
-    FROM member 
-    where id=:id;";
 
-$member = pdo($pdo, $sql, [$id])->fetch();    // Get article data
+
+$member = $cms->getMember()->get($id);
 if (!$member) {   
     header("Location: nieznaleziono.php");  
     exit();                              // Page not found
 }
 
-$sqlre="SELECT rent.id_car,rent.id_member,rent.data_wypozyczenia,rent.czas_wypozyczenia,
-    member.id, car.marka, car.model, car.image,car.wypozyczony,car.cena
-    FROM rent
-    join member on rent.id_member = member.id
-    left join car on rent.id_car = car.id
-    where member.id = :id;";
+
     
 
-$rent = pdo($pdo, $sqlre,[$id])->fetchAll();
+$rent = $cms->getRent()->getRents($id);        
 
 
 

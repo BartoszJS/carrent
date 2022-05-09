@@ -17,12 +17,9 @@ is_admin($session->role);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-$sqlre="DELETE FROM rent where id_car=:id;";
-$car = pdo($pdo, $sqlre, [$id])->fetch(); 
 
-$sql="DELETE FROM car where id=:id;";
-
-$car = pdo($pdo, $sql, [$id])->fetch();    // Get article data
+$rent = $cms->getRent()->usunRent($id);  
+$car = $cms->getCar()->usunCar($id);    // Get article data
 if (!$car) {   
     header("Location: index.php");  
     exit();                              // Page not found

@@ -11,11 +11,8 @@ if (!$id) {
     exit();                                         // If no valid id
 }
 
-$sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,cena,liczba_miejsc,wypozyczony,image
-    FROM car 
-    where id=:id;";
 
-$car = pdo($pdo, $sql, [$id])->fetch();    // Get article data
+$car = $cms->getCar()->getCar($id);   
 if (!$car) {   
     header("Location: nieznaleziono.php");  
     exit();                              // Page not found

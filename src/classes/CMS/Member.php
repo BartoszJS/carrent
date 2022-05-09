@@ -11,23 +11,25 @@ class Member
     }
 
     // Get individual member by id
-    public function get(int $id)
+    public function get($id)
     {
         $sql = "SELECT id, imie, nazwisko, email, data_dolaczenia, telefon, role 
                   FROM member
-                 WHERE id = :id;";                       // SQL to get member
-        return $this->db->runSQL($sql, [$id])->fetch();  // Return member
+                 WHERE id = :id;";    
+                 
+       
+        return $this->db->runSQL($sql, [$id])->fetch();  
     }
 
     // Get details of all members
-    public function getAll(): array
+    public function getAll()
     {
-        $sql = "SELECT id, imie, nazwisko, data_dolaczenia, telefon, role 
-                  FROM member;";                         // SQL to get all members
-        return $this->db->runSQL($sql)->fetchAll();      // Return all members
+        $sql = "SELECT id, imie, nazwisko,email,data_dolaczenia, telefon, role 
+                  FROM member;";                         
+        return $this->db->runSQL($sql)->fetchAll();      
     }
 
-    // Get individual member data using their email
+
     public function getIdByEmail(string $email)
     {
         $sql = "SELECT id

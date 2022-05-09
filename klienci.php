@@ -1,6 +1,4 @@
-<?php
-declare(strict_types = 1);                               // Use strict types
-use PhpBook\Validate\Validate;                           // Import Validate class
+<?php                         // Import Validate class
 include 'src/bootstrap.php';    
 include 'src/database-connection.php'; 
 include 'src/validate.php';
@@ -10,10 +8,8 @@ include 'src/validate.php';
 is_admin($session->role); 
 
 
-$sql="SELECT id,imie,nazwisko,email,telefon,data_dolaczenia,role
-    FROM member ;";
 
-$member = pdo($pdo, $sql)->fetchAll();    // Get article data
+$member = $cms->getMember()->getAll();   
 
 
 

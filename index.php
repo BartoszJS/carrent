@@ -1,19 +1,12 @@
-<?php
-declare(strict_types = 1);                               // Use strict types
-use PhpBook\Validate\Validate;                           // Import Validate class
+<?php          
 include 'src/bootstrap.php';    
 include 'src/database-connection.php'; 
 include 'src/validate.php';
 
-// $rolesession = $_SESSION['role'] == 'member' ?? '';
 
 
-$sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,cena,liczba_miejsc,wypozyczony,image
-    FROM car
-    where wypozyczony=0   
-    order by id desc
-    limit 5;";
-$car = pdo($pdo,$sql)->fetchAll();
+
+$car = $cms->getCar()->indexCar();
 
 
 

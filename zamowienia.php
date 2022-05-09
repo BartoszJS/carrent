@@ -11,14 +11,9 @@ include 'src/validate.php';
 
 
 
-$sqlre="SELECT rent.id_car,rent.id_member,rent.data_wypozyczenia,rent.czas_wypozyczenia,
-    member.id, car.marka, car.model, car.image,car.wypozyczony,car.cena
-    FROM rent
-    join member on rent.id_member = member.id
-    left join car on rent.id_car = car.id;";
-    
 
-$rent = pdo($pdo, $sqlre)->fetchAll();
+
+$rent = $cms->getRent()->getRentMember();
 
 
 

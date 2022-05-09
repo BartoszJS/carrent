@@ -39,8 +39,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
           ? '' : 'Hasło musi miec od 1-20 znaków';
         $errors['potwierdz']    =($member['haslo']==$confirm) 
          ? '' : 'Hasła nie są identyczne';
-        // $errors['potwierdz']  = is_text($confirm, 1, 20)
-        //   ? '' : 'Hasło musi miec od 1-20 znaków';
       $errors['email']  = is_text($member['email'], 1, 40)
           ? '' : 'Email musi miec od 1-40 znaków';
 
@@ -48,23 +46,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   
       $invalid = implode($errors);
   
-    //   if ($invalid) {                                              // If invalid
-    //     $errors['warning'] = 'Popraw poniższe błędy';  // Store message
-    // } else {
-  
-    //   $sql="INSERT INTO member(imie,nazwisko,email,haslo,telefon,role)
-    //   values (:imie,:nazwisko,:email,:haslo,:telefon,'member');";
-    
-    //   $arguments=$member;
-  
-    //   try{
-    //     pdo($pdo,$sql,$arguments)  ;  
-    //     header("Location: logowanie.php"); 
-    //     exit();
-    //   }catch(PDOException $e){
-    //     throw $e;
-    //   }
-
+ 
 
     
   

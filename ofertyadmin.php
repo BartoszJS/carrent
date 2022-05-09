@@ -17,31 +17,15 @@ $car=[];
 
 if(!$term){
     $count = 0;
-    $sqlicz="SELECT COUNT(id) from car where wypozyczony=0;";
-    $count = pdo($pdo, $sqlicz)->fetchColumn();
+    $count = $cms->getCar()->countCars();
     if($count>0){
-        $arguments['show'] = $show;                     
-        $arguments['from'] = $from;
-
-        $sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,cena,liczba_miejsc,wypozyczony,image
-        FROM car
-        where wypozyczony=0   
-        order by id desc
-        limit :show
-        OFFSET :from;";
-        $car = pdo($pdo,$sql, $arguments)->fetchAll();
+        $car = $cms->getCar()->getCars($show,$from);
     }
 }
 
 
-$sqlre="SELECT rent.id_car,rent.id_member,rent.data_wypozyczenia,rent.czas_wypozyczenia,
-    member.id, car.marka, car.model, car.image,car.wypozyczony,car.cena
-    FROM rent
-    join member on rent.id_member = member.id
-    left join car on rent.id_car = car.id;";
-    
 
-$rent = pdo($pdo, $sqlre)->fetchAll();
+$rent = $cms->getRent()->getRentMember();
 
 
 
@@ -52,28 +36,9 @@ if($term){
     // $arguments['term3'] ='%'.$term.'%';
 
 
-    $sql="SELECT COUNT(id) from car
-    where wypozyczony=0
-    and marka     like :term1;";
-
-    $count = 0;
-    
-    $count = pdo($pdo, $sql, $arguments)->fetchColumn();
-
-
-    if ($count > 0) {                                     // If articles match term
-        $arguments['show'] = $show;                       // Add to array for pagination
-        $arguments['from'] = $from; 
-
-        $sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,cena,liczba_miejsc,wypozyczony,image
-            FROM car
-            where wypozyczony=0   
-            and marka like :term1
-            order by id desc
-            limit :show
-            OFFSET :from;";
-        
-        $car = pdo($pdo, $sql, $arguments)->fetchAll();
+    $count = $cms->getCar()->countCarsTerm($term);
+    if($count>0){
+        $car = $cms->getCar()->getCarsTerm($show,$from,$term);
 
     }
 }

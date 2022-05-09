@@ -1,11 +1,11 @@
 <?php
             
-            include 'src/bootstrap.php';    
-            include 'src/database-connection.php'; 
-            include 'src/validate.php';
+include 'src/bootstrap.php';    
+include 'src/database-connection.php'; 
+include 'src/validate.php';
             
 
-            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
                 $rent['id_car']=$_POST['id_car'];
@@ -13,19 +13,14 @@
                 $rent['data_wypozyczenia']=$_POST['data_wypozyczenia'];
                 $rent['czas_wypozyczenia']=$_POST['czas_wypozyczenia'];
                 
-                $sqlrent="INSERT INTO rent(id_car,id_member,data_wypozyczenia,czas_wypozyczenia)
-                values(:id_car,:id_member,:data_wypozyczenia,:czas_wypozyczenia);";
+                
                 
                 $arguments=$rent;
+
+                $cms->getRent()->insertRent($arguments);
+
                 
-                try{
-                    pdo($pdo,$sqlrent,$arguments)  ;  
-                    header("Location: index.php"); 
-                    exit();
-                  }catch(PDOException $e){
-                    throw $e;
-                  }
-                }
+}
 
 
 

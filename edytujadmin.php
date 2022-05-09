@@ -1,7 +1,8 @@
 <?php
-declare(strict_types = 1);                                         // Use strict types
+    
+                        
 include 'src/database-connection.php';                     // Database connection
-include 'src/functions.php';                               // Functions
+include 'src/bootstrap.php';                              // Functions
 include 'src/validate.php';
 
 
@@ -40,11 +41,8 @@ $car['kiedy_dodany']='';
 
 // $car['image']='';
 
-$sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,cena,liczba_miejsc,wypozyczony,image
-    FROM car 
-    where id=:id;";
 
-$car = pdo($pdo, $sql, [$id])->fetch();    // Get article data
+$car = $cms->getCar()->getCar($id);       // Get article data
 if (!$car) {   
     header("Location: nieznaleziono.php");  
     exit();                              // Page not found
@@ -71,22 +69,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $arguments=$car;    
   
   
-    $sql="UPDATE car 
-          set marka=:marka,model=:model,rocznik=:rocznik,silnik=:silnik,
-          paliwo=:paliwo,konie=:konie,
-          skrzynia=:skrzynia,cena=:cena,liczba_miejsc=:liczba_miejsc,
-          wypozyczony=:wypozyczony,image=:image,kiedy_dodany=:kiedy_dodany
-          where id=:id;";
-   
-
-    try{       
-      pdo($pdo,$sql,$arguments);  
-      header("Location: car.php?id=".$id); 
-      exit();
-    }catch(PDOException $e){
-      $pdo->rollBack();   
-      throw $e;
-    }
+    $cms->getCar()->updateCar($arguments,$id);
 
   }
 

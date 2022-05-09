@@ -14,16 +14,11 @@ if (!$id) {
 
 is_member($session->role);  
 
-$sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,cena,liczba_miejsc,wypozyczony,image
-    FROM car 
-    where id=:id;";
-
-$car = pdo($pdo, $sql, [$id])->fetch();    // Get article data
+$car = $cms->getCar()->getCar($id);    // Get article data
 if (!$car) {   
     header("Location: nieznaleziono.php");  
     exit();                              // Page not found
 }
-$countid="SELECT id from car where id=:id;";
 
 
 

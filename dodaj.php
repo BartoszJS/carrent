@@ -28,6 +28,9 @@ $car['cena']='';
 $car['liczba_miejsc']='';
 $car['image']='';
 
+$last = $cms->getCar()->lastIdCar();
+$last=$last+1;
+
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -49,21 +52,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $car['image']    =$_FILES['image']['name'];
   
           
-  
-  
-    $sql="INSERT INTO car(marka,model,rocznik,silnik,paliwo,konie,skrzynia,cena,liczba_miejsc,wypozyczony,image)
-    values            (:marka,:model,:rocznik,:silnik,:paliwo,:konie,:skrzynia,:cena,:liczba_miejsc,0,:image);";
-  
     $arguments=$car;
-
-    try{
-      pdo($pdo,$sql,$arguments)  ;  
-      $lastcar=$pdo->lastInsertId();
-      header("Location: car.php?id=".$lastcar); 
-      exit();
-    }catch(PDOException $e){
-      throw $e;
-    }
+  
+    $cms->getCar()->dodajCar($arguments,$last);  
 
   }
 

@@ -31,12 +31,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $haslo = $_POST['haslo'];
 
 
-    // $errors['haslo']  = is_text($member['haslo'], 1, 20)
-    //       ? '' : 'Hasło musi miec od 1-20 znaków';
-       
-    // $errors['email']  = is_text($member['email'], 1, 40)
-    //       ? '' : 'Email musi miec od 1-40 znaków';
-
           $invalid = implode($errors);
           
 

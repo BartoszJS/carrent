@@ -1,6 +1,5 @@
 <?php
-declare(strict_types = 1);                               // Use strict types
-use PhpBook\Validate\Validate;                           // Import Validate class
+                     
 include 'src/bootstrap.php';    
 
 is_member($session->role);  

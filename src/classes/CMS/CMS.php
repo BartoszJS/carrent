@@ -1,35 +1,21 @@
 <?php
-namespace PhpBook\CMS;                                   // Namespace declaration
+namespace PhpBook\CMS;                                  
 
 class CMS
 {
-    protected $db        = null;                         // Stores reference to Database object
-    protected $article   = null;                         // Stores reference to Article object
-    protected $category  = null;                         // Stores reference to Category object
-    protected $member    = null;                         // Stores reference to Member object
-    protected $session   = null;                         // Stores reference to Session object
-    protected $token     = null;                         // Stores reference to Token object
+    protected $db        = null;                                        
+    protected $member    = null;                        
+    protected $session   = null;                              
+    protected $car   = null;                              
+    protected $rent   = null;                              
+                  
 
     public function __construct($dsn, $username, $password)
     {
         $this->db = new Database($dsn, $username, $password); // Create Database object
     }
 
-    public function getArticle()
-    {
-        if ($this->article === null) {                   // If $article property null
-            $this->article = new Article($this->db);     // Create Article object
-        }
-        return $this->article;                           // Return Article object
-    }
-
-    public function getCategory()
-    {
-        if ($this->category === null) {                  // If $category property null
-            $this->category = new Category($this->db);   // Create Category object
-        }
-        return $this->category;                          // Return Category object
-    }
+   
 
     public function getMember()
     {
@@ -47,11 +33,23 @@ class CMS
         return $this->session;                           // Return Session object
     }
 
-    public function getToken()
+
+    public function getCar()
     {
-        if ($this->token === null) {                     // If $token property null
-            $this->token = new Token($this->db);         // Create Token object
+        if ($this->car === null) {                     // If $car property null
+            $this->car = new Car($this->db);         // Create Token object
         }
-        return $this->token;                             // Return Token object
+        return $this->car;                             // Return Token object
     }
+    public function getRent()
+    {
+        if ($this->rent === null) {                     // If $rent property null
+            $this->rent = new Rent($this->db);         // Create Token object
+        }
+        return $this->rent;                             // Return Token object
+    }
+
+
+
+  
 }
