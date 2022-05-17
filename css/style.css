@@ -44,6 +44,7 @@ footer a{
     position: fixed;
     box-shadow: var(--box-shadow);
     border-bottom: 1px solid white;
+    opacity: 0.9;
  }
  
  .inner_header {

@@ -1,11 +1,7 @@
 <?php
-declare(strict_types = 1);                               // Use strict types
-use PhpBook\Validate\Validate;                           // Import Validate class
+                              // Use strict types                          // Import Validate class
 include 'src/bootstrap.php';    
-include 'src/database-connection.php'; 
-include 'src/validate.php';
-// include 'includes/functions.php';
-// $rolesession = $_SESSION['role'] == 'member' ?? '';
+
 
 $term  = filter_input(INPUT_GET, 'term');                 // Get search term
 $show  = filter_input(INPUT_GET, 'show', FILTER_VALIDATE_INT) ?? 3; // Limit

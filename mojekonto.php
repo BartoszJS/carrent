@@ -1,9 +1,6 @@
 <?php
-                          // Import Validate class
+                          
 include 'src/bootstrap.php';    
-include 'src/database-connection.php'; 
-include 'src/validate.php';
-
 
 
 

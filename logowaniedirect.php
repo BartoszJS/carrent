@@ -1,9 +1,6 @@
-<?php
-declare(strict_types = 1);                               // Use strict types
-use PhpBook\Validate\Validate;                           // Import Validate class
+<?php                      
 include 'src/bootstrap.php';    
-include 'src/database-connection.php'; 
-include 'src/validate.php';
+
 $errors =[];
 
 

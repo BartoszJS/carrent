@@ -1,9 +1,6 @@
-<?php                         // Import Validate class
+<?php                        
 include 'src/bootstrap.php';    
-include 'src/database-connection.php'; 
-include 'src/validate.php';
-// include 'includes/functions.php';
-// $rolesession = $_SESSION['role'] == 'member' ?? '';
+
 
 is_admin($session->role); 
 

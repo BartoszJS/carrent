@@ -12,34 +12,34 @@ class CMS
 
     public function __construct($dsn, $username, $password)
     {
-        $this->db = new Database($dsn, $username, $password); // Create Database object
+        $this->db = new Database($dsn, $username, $password); 
     }
 
    
 
     public function getMember()
     {
-        if ($this->member === null) {                    // If $member property null
-            $this->member = new Member($this->db);       // Create Member object
+        if ($this->member === null) {                    
+            $this->member = new Member($this->db);     
         }
-        return $this->member;                            // Return Member object
+        return $this->member;                          
     }
 
     public function getSession()
     {
-        if ($this->session === null) {                   // If $session property null
-            $this->session = new Session($this->db);     // Create Session object
+        if ($this->session === null) {                  
+            $this->session = new Session($this->db);    
         }
-        return $this->session;                           // Return Session object
+        return $this->session;                        
     }
 
 
     public function getCar()
     {
-        if ($this->car === null) {                     // If $car property null
-            $this->car = new Car($this->db);         // Create Token object
+        if ($this->car === null) {                     
+            $this->car = new Car($this->db);       
         }
-        return $this->car;                             // Return Token object
+        return $this->car;                            
     }
     public function getRent()
     {

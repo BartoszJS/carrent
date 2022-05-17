@@ -1,8 +1,7 @@
 <?php
             
 include 'src/bootstrap.php';    
-include 'src/database-connection.php'; 
-include 'src/validate.php';
+
             
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -11,17 +10,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $rent['id_car']=$_POST['id_car'];
                 $rent['id_member']=$_POST['id_member'];
                 $rent['data_wypozyczenia']=$_POST['data_wypozyczenia'];
-                $rent['czas_wypozyczenia']=$_POST['czas_wypozyczenia'];
-                
-                
-                
+                $rent['czas_wypozyczenia']=$_POST['czas_wypozyczenia']; 
                 $arguments=$rent;
-
                 $cms->getRent()->insertRent($arguments);
 
                 
 }
-
 
 
                 ?>

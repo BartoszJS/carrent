@@ -1,9 +1,5 @@
 <?php                      
 include 'src/bootstrap.php';    
-include 'src/database-connection.php'; 
-include 'src/validate.php';
-// include 'includes/functions.php';
-// $rolesession = $_SESSION['role'] == 'member' ?? '';
 
 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); // Validate id

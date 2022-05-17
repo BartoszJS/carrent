@@ -1,8 +1,7 @@
 <?php
             
 include 'src/bootstrap.php';    
-include 'src/database-connection.php'; 
-include 'src/validate.php';
+
             
             
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); // Validate id
