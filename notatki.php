@@ -137,12 +137,10 @@ $cars['rented']='';
                         
                         <p>Skrzynia biegów: <?= html_escape($pojedynczo['skrzynia'])?></p> <br>
                         <p id="cena">Cena: <?= html_escape($pojedynczo['cena'])?>zł/24h</p> 
-                        <div class="przyciskiadmin">
-                            <a href="edytujadmin.php?id=<?= $pojedynczo['id'] ?>" class="btnadmin" >EDYTUJ</a><br> <br>
-                            <a href="usunadmin.php?id=<?= $pojedynczo['id'] ?>" class="btnadmin" >USUŃ</a><br> <br>
-                            <a href="wypozycz.php?id=<?= $pojedynczo['id'] ?>" class="btnadmin" >WYPOŻYCZ</a><br><br>
-                        
-                        </div>  
+                            <a href="edytujadmin.php?id=<?= $pojedynczo['id'] ?>" class="btnedytuj" >EDYTUJ</a><br> <br>
+                            <a href="usunadmin.php?id=<?= $pojedynczo['id'] ?>" class="btnusun" >USUŃ</a><br> <br>
+                            <a href="wypozycz.php?id=<?= $pojedynczo['id'] ?>" class="btnwypo" >WYPOŻYCZ</a><br>
+                            
                         </div>   
                             <br>
                         </a>
@@ -155,7 +153,7 @@ $cars['rented']='';
                     <div class="column">
                             <img class="image-resize" src="uploads/<?= html_escape($pojedynczo['image'] ?? 'blank.png') ?>">
                         </div> 
-                    <div class="tekstadmin">
+                    <div class="tekst">
                     <div class="imie">  
                     <p id="dostepnosc">Aktualnie niedostępny</p> <br><br><br>
                             <?= html_escape($pojedynczo['marka'])?>
@@ -167,16 +165,17 @@ $cars['rented']='';
                         <?= html_escape($pojedynczo['konie'])?> km</p> <br> 
                         <p>Skrzynia biegów: <?= html_escape($pojedynczo['skrzynia'])?></p> <br>
                         <p id="cena">Cena: <?= html_escape($pojedynczo['cena'])?>zł/24h</p> 
-                    </div> 
-                    <div class="przyciskiadmin">
+                        <div class="przyciskiadmin">
                             <a href="edytujadmin.php?id=<?= $pojedynczo['id'] ?>" class="btnadmin" >EDYTUJ</a><br> <br>
                             <a href="usunadmin.php?id=<?= $pojedynczo['id'] ?>" class="btnadmin" >USUŃ</a><br> <br>
-                            <a href="wypozycz.php?id=<?= $pojedynczo['id'] ?>" class="btnadmin" >WYPOŻYCZ</a><br><br>
+                            <a href="wypozycz.php?id=<?= $pojedynczo['id'] ?>" class="btnadmin" >WYPOŻYCZ</a><br>
                             <a href="wypozycz.php?id=<?= $pojedynczo['id'] ?>" class="btnadmin" >SPRAWDZ TERMINY</a><br>
-                        </div>  
+                        </div>
+                            </a>
+                        </div>   
                             
                       
-                    </div>
+                        </div>
                         
                     <?php } ?>
     <?php }?>

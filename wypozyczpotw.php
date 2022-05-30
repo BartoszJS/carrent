@@ -2,17 +2,25 @@
             
 include 'src/bootstrap.php';    
 
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+    $rent['id_car']=$_POST['id_car'];
+    $rent['id_member']=$_POST['id_member'];
+    $rent['data_wypozyczenia']=$_POST['data_wypozyczenia'];
+    $rent['czas_wypozyczenia']=$_POST['czas_wypozyczenia']; 
+    
+
+    
+}            
             
-            
-$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); // Validate id
-if (!$id) {     
-    header("Location: nieznaleziono.php");  
-    exit();                                         // If no valid id
-}
+
 
 
 is_member($session->role);  
 
+
+$id=$rent['id_car'];
 $car = $cms->getCar()->getCar($id);    // Get article data
 if (!$car) {   
     header("Location: nieznaleziono.php");  
@@ -44,10 +52,12 @@ if (!$car) {
     
 
     <div class="wypozycz">
+       
         <div class="ramka">
             <div class="column">
                 <img class="image-resize" src="uploads/<?= html_escape($car['image'] ?? 'blank.png') ?>">
             </div> 
+            <h2>Potwierdzenie wypożyczenia</h2>
             <div class="imie">  
                 <?= "Dane klienta" ?>
             </div> 
@@ -78,27 +88,25 @@ if (!$car) {
                             
                             
             </div>   
-<form action="wypozyczpotw.php" method="POST" enctype="multipart/form-data"> 
+<form action="wypozyczconfirm.php" method="POST" enctype="multipart/form-data"> 
                     <input type="hidden" name="id_car" value="<?= $car['id'] ?>" > 
                     <input type="hidden" name="id_member" value="<?= $_SESSION['id'] ?>" > 
+                    <input type="hidden" name="data_wypozyczenia" value="<?= $rent['data_wypozyczenia'] ?>" > 
+                    <input type="hidden" name="czas_wypozyczenia" value="<?= $rent['czas_wypozyczenia'] ?>" > 
                 <div class="forms">
                     <!-- <label for="start">  Od kiedy: </label> <br>
                     <input type="date" name="start" id="start" value="" class="form-control">
                     <label for="start">Start date:</label> -->
-                    <label for="start">  Data wypożyczenia: </label>
-                    <?php  $d=strtotime("+12 Months");?>
-                    <input type="datetime-local" id="start" name="data_wypozyczenia"
-                        value="<?php date("Y-m-d h:i:sa") ?>"
-                        min="<?php date("Y-m-d h:i:sa") ?>" max="<?php date("Y-m-d h:i:sa", $d) ?>" > <br><br>
-
+                    <label for="start">  Data wypożyczenia: <?= $rent['data_wypozyczenia'] ?></label><br><br>
+                    
                         
-                    <label for="dni">  Czas wypożyczenia: </label> 
-                    <input type="text" name="czas_wypozyczenia" id="dni" placeholder="Podaj liczbe dni:"  class="form-con">
+                    <label for="dni">  Czas wypożyczenia: <?=  $rent['czas_wypozyczenia']?></label> 
+                    
                     
                     
 
                 </div>
-                <input type="submit" name="update" class="btnpotw" value="WYPOŻYCZENIE"><br>  
+                <input type="submit" name="update" class="btnpotw" value="POTWIERDZ WYPOŻYCZENIE"><br>  
         </div>   
 </form>             
     </div>

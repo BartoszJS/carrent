@@ -156,7 +156,7 @@ $cars['rented']='';
                                 <p>Skrzynia biegów: <?= html_escape($pojedynczo['skrzynia'])?></p> <br><br>
                                 
                                 <p id="cenaa">Cena: <?= html_escape($pojedynczo['cena'])?>zł/24h</p> <br><br><br><br> 
-                                <a href="wypozycz.php?id=<?= $pojedynczo['id'] ?>" class="btnwypo" >SPRAWDZ TERMINY</a><br>
+                                <a href="wypozycz.php?id=<?= $pojedynczo['id'] ?>" class="btnsprawdz" >SPRAWDZ TERMINY</a><br>
                                 
                         </div> <br>
                     </a>

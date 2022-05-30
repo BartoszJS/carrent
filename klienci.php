@@ -52,9 +52,10 @@ $member = $cms->getMember()->getAll();
                     <?php foreach($member as $czlonek) { ?> 
                         <a href="klient.php?id=<?= $czlonek['id'] ?>">
                         <div class="rama">
+                            <div class="ramaka">
                             <div class="calytekst">
                                 <div class="tekst1">  
-                                    <p>  Id: <?= $czlonek['id'] ?>    </p>       
+                                    <p id="id">  Id: <?= $czlonek['id'] ?>    </p>       
                                     <p>  <?= $czlonek['imie'] ?>   <?= $czlonek['nazwisko'] ?> </p> 
                                       <?php if($czlonek['role']=='member'){?> 
                                         <p>Klient</p> 
@@ -72,6 +73,7 @@ $member = $cms->getMember()->getAll();
                                 </div>    
                             </div>     
                         </div>  
+                        </div>
                         </a>  
                         <br><br><br>
                     <?php } ?>

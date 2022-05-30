@@ -78,8 +78,8 @@ $rent = $cms->getRent()->getRents($id);
                    <?php if(!$rent) { ?> <p>Nie wypożyczono samochodu</p> <?php } ?>
                         <?php foreach($rent as $pojedynczo) { ?> 
                             <div class="onerent">
-                                <p> <?= $pojedynczo['marka'] ?> <?= $pojedynczo['model'] ?><span class="price">
-                                    Cena: <?= $pojedynczo['cena']*$pojedynczo['czas_wypozyczenia']?>zł</span></p> 
+                                <p class="marka"> <?= $pojedynczo['marka'] ?> <?= $pojedynczo['model'] ?></p><br><br>
+                                   <p class="price"> Cena: <?= $pojedynczo['cena']*$pojedynczo['czas_wypozyczenia']?>zł</span></p> 
                                 <p>Od:    <?= $pojedynczo['data_wypozyczenia'] ?> 
                                 <?php $czas= $pojedynczo['czas_wypozyczenia']?>
                                 <?php $data= $pojedynczo['data_wypozyczenia']?>

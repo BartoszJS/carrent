@@ -117,6 +117,8 @@ footer a{
  
  
  }
+
+
  
  
  .navigatione a:hover {
@@ -276,6 +278,54 @@ footer a{
    font-weight: 600;
    clear: both;
    width: 6%;
+   
+  
+}
+.btnsprawdz{
+   color: black;
+   font-size: 22px;
+   background: #e7c800;;
+   /* display: inline-block;
+   width: min-content;
+   white-space: nowrap; */
+   border: 1px solid transparent;
+   border-radius: 3px;
+   padding: 3px;
+   line-height: 1.7;
+   
+   text-transform: uppercase;
+   text-align: center;
+   border-radius: 5px 5px 5px 5px;
+   font-weight: 600;
+   clear: both;
+   width: 17%;
+   float: right;
+   margin-right: 3%;
+   margin-bottom: 5%;
+   margin-top: -45px;
+   
+  
+}
+.btnadmin{
+   color: black;
+   font-size: 22px;
+   background: #e7c800;;
+   /* display: inline-block;
+   width: min-content;
+   white-space: nowrap; */
+   border: 1px solid transparent;
+   border-radius: 3px;
+   padding: 3px;
+   line-height: 1.7;
+   
+   text-transform: uppercase;
+   text-align: center;
+   border-radius: 5px 5px 5px 5px;
+   font-weight: 600;
+   clear: both;
+   width: 17%;
+   float: right;
+   margin-top: -20px;
    
   
 }
@@ -644,6 +694,7 @@ height: 100%;
    padding-left: 3%;
    border-top: 1px solid white;
    border-bottom: 1px solid white;
+  
    width: 100%;
    /* padding: 15px; */
    background-color: #2f2f2f;
@@ -675,6 +726,7 @@ height: 100%;
    text-align: left;
    padding-top: 30px;
    
+
 }
  .oferty p{
     
@@ -683,31 +735,58 @@ height: 100%;
    color: white;
    text-align: left;
     float: left; 
-   
+
   padding: 10px;
-  width: 30%;
+  width: 25%;
 
   
 } 
+
 .oferty #cena{
    padding-top: 6%;
    font-size: 22px;
    font-weight: 800;
    color: white;
-   width: 30%;
+   width: 25%;
+   
 
 } 
 .oferty #cenaa{
    font-size: 22px;
    font-weight: 800;
    color: white;
-   width: 20%;
+   width: 15%;
+   margin-top: 20px;
  
 } 
 .oferty #dostepnosc{
    color: red;
    font-size: 28px;
    font-weight: 800;
+   width: 400px;
+
+
+}
+
+.przyciskiadmin{
+   
+   margin-top: -250px;
+   float: right;
+
+   margin-right: 60px;
+   width:100%;
+}
+
+.wypozyczono{
+   width: 70%;
+   margin-left: auto;
+   margin-right: auto;
+   padding-top: 120px;
+   color: white;
+
+}
+.wypozyczono a{
+color: #e7c800;
 
 }
 
@@ -821,6 +900,8 @@ height: 100%;
    width: 54%;
 
 }
+
+
 
 
 .oferta .imie{
@@ -955,7 +1036,7 @@ height: 100%;
 
 
 .wypozycz .forms #start{
-   width: 12%;
+   width: 15%;
    font-size: 20px;
    border-radius: 5px 5px 5px 5px;
    background-color: #e7c800;
@@ -1048,7 +1129,7 @@ height: 100%;
 }
 .wypozycz .form-con {
    padding: 3px;
-   width: 12%;
+   width: 15%;
    font-size: 18px;
    background-clip: padding-box;
    box-shadow: 3px 3px 7px rgb(39, 39, 39);
@@ -1104,7 +1185,19 @@ height: 100%;
 
 .mojekonto2 .price{
   
-   padding-left: 30%;
+  float: right;
+  width: 30%;
+  
+}
+.mojekonto2 .marka{
+  
+  float: left;
+  width: 40%;
+}
+
+.tekst1 #id{
+   color: #e7c800;
+   font-weight: 800;
 }
 
 .mojekonto2 .ramka{
@@ -1151,9 +1244,9 @@ height: 100%;
 } */
 .klienci .calytekst{
 
-   width: 60%;
+   width: 100%;
    margin-left: auto ;
-   margin-right: auto;
+   margin-right:auto;
    color: white;
 }
 
@@ -1168,6 +1261,14 @@ height: 100%;
 .klienci .rama{
    border-top: 1px solid white;
    border-bottom: 1px solid white;
+
+}
+.klienci .ramaka{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+   border-right: 1px solid white;
+   border-left: 1px solid white;
 }
 
 .klienci .imie{

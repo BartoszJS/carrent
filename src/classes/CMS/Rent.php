@@ -51,7 +51,7 @@ class Rent
                 
         try{
             $this->db->runSql($sql,$arguments)->fetch();  
-            header("Location: index.php"); 
+            header("Location: wypozyczconfirm.php"); 
             exit();
         }catch(PDOException $e){
             throw $e;

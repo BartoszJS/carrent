@@ -11,7 +11,7 @@ class Car
     }
 
     
-    //potwwypo.php, czytelnik.php edytujczytelnika.php usunczytelnika.php
+    
    
     public function indexCar()
     { 
@@ -22,6 +22,7 @@ class Car
         limit 5;";
        return $this->db->runSql($sql)->fetchAll();     
     }
+    //potwwypo.php, czytelnik.php edytujczytelnika.php usunczytelnika.php
     public function getCar($id)
     { 
         $sql="SELECT id,marka,model,rocznik,silnik,paliwo,konie,skrzynia,kiedy_dodany,cena,liczba_miejsc,wypozyczony,image

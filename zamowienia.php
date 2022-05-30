@@ -2,11 +2,6 @@
 include 'src/bootstrap.php';    
 
 
-
-
-
-
-
 $rent = $cms->getRent()->getRentMember();
 
 
