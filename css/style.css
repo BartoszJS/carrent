@@ -21,8 +21,8 @@
  }
  html{
     scroll-behavior: smooth;
+    scroll-padding-top:95px;
  }
-
  footer {
    font-size: 0.8rem;
    text-align: right;
