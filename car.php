@@ -47,17 +47,17 @@ if (!$car) {
                             <img class="image-resize" src="uploads/<?= html_escape($car['image'] ?? 'blank.png') ?>">
                         </div> 
                     <div class="tekst">
-                    <div class="imie">  
-                            <?= html_escape($car['marka'])?>
-                            <?= html_escape($car['model'])?> 
-                    </div> <br> 
-                        <p>Rocznik: <?= html_escape($car['rocznik'])?></p> <br><br>
-                        <p>Silnik:    <?= html_escape($car['silnik'])?>
-                        <?= html_escape($car['paliwo'])?>
-                        <?= html_escape($car['konie'])?> km</p> <br> <br>
-                        <p>Skrzynia biegów: <?= html_escape($car['skrzynia'])?></p> <br><br>
-                        <p id="cena">Cena: <?= html_escape($car['cena'])?>zł/24h</p> <br><br><br><br> <a href="wypozycz.php?id=<?= $car['id'] ?>" class="btnwypo" >WYPOŻYCZ</a><br>
-                        
+                        <div class="imie">  
+                                <?= html_escape($car['marka'])?>
+                                <?= html_escape($car['model'])?> 
+                        </div> <br> 
+                            <p>Rocznik: <?= html_escape($car['rocznik'])?></p> <br><br>
+                            <p>Silnik:    <?= html_escape($car['silnik'])?>
+                            <?= html_escape($car['paliwo'])?>
+                            <?= html_escape($car['konie'])?> km</p> <br> <br>
+                            <p>Skrzynia biegów: <?= html_escape($car['skrzynia'])?></p> <br><br>
+                            <p id="cena">Cena: <?= html_escape($car['cena'])?>zł/24h</p> <br><br><br><br> <a href="wypozycz.php?id=<?= $car['id'] ?>" class="btnwypo" >WYPOŻYCZ</a><br>
+                            
                             
                             
                     </div>   
